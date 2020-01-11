@@ -6,10 +6,9 @@ on:
     - master
 jobs:
   sanit_build:
-    name: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.0.0
       - name: Test all 
         run: |
          sudo apt update
