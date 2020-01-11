@@ -19,7 +19,7 @@ jobs:
         run: sudo sanity check
         
       - name: Sanity build 
-        run: 
+        run: | 
           sudo chmod 777 -R ${GITHUB_WORKSPACE}
           sudo sanity build
       - name: check dist folder
