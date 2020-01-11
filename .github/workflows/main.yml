@@ -16,8 +16,7 @@ jobs:
         sudo apt install nodejs
         sudo npm install -g @sanity/cli
         sudo yes "" | sudo sanity login
-        sanity init -y --project "n6wcd0td" --dataset production --output-path .
-        sanity check && sanity build
+        sudo sanity check
    
   
     
