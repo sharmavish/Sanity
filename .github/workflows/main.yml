@@ -3,11 +3,7 @@ name: Sanity_CICD
 on:
   push:
     branches:
-    - development
-  pull_request:
-    branches:
-    - devlopment
-
+    - master
 jobs:
   sanit_check:
     name: sanity check 
