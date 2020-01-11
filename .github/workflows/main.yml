@@ -15,9 +15,9 @@ jobs:
         sudo apt update
         sudo apt install nodejs
         sudo npm install -g @sanity/cli
-        sudo yes "" | sudo sanity login
-        sudo cd ../../../
-        sudo sanity check
+        echp $PWD
+        echo "====="
+        sudo pwd
    
   
     
