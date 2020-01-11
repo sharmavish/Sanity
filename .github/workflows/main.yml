@@ -27,9 +27,7 @@ jobs:
       
       - name: sanity login and deployment
         run: |
-           echo -e  "\U+02C5" | sudo sanity login > login.txt
-           URL=`cat login.txt |  cut -d":" -f2`
-           curl -L -u"a7fcbd595fe92c92e1a90358b4f221ebb5482555" https:\$URL
+           echo -e  "\U+02C5" | sudo sanity login 
            sudo sanity deploy
      
    
