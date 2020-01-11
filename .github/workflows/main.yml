@@ -15,7 +15,8 @@ jobs:
          sudo apt install nodejs
          sudo npm install -g @sanity/cli   
       - name: Sanity check 
-        run: sudo sanity check
+        run: |
+         sudo sanity check
      
          
    
