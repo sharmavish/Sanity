@@ -15,10 +15,10 @@ jobs:
          sudo apt install nodejs
          sudo npm install -g @sanity/cli
          echo $PWD
-         echo "====="
+         sudo ls -l
          echo $GITHUB_WORKSPACE
          echo "====="
-         echo $WORKSPACE
+         
    
   
     
