@@ -6,20 +6,19 @@ on:
     - master
 jobs:
   sanit_build:
-    name: sanity build
+    name: build
     runs-on: ubuntu-latest
-
     steps:
-    - name: Install NPM and sanity 
-      run: |
-        sudo apt update
-        sudo apt install nodejs
-        sudo npm install -g @sanity/cli
-        echo $PWD
-        echo "====="
-        echo $GITHUB_WORKSPACE
-        echo "====="
-        echo $WORKSPACE
+      - uses: actions/checkout
+      - run: |
+         sudo apt update
+         sudo apt install nodejs
+         sudo npm install -g @sanity/cli
+         echo $PWD
+         echo "====="
+         echo $GITHUB_WORKSPACE
+         echo "====="
+         echo $WORKSPACE
    
   
     
