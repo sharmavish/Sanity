@@ -25,10 +25,10 @@ jobs:
       - name: check dist folder
         run: ls -l  
       
-      - name: sanity login
-        run: yes ""| sudo sanity login
-      - name: Sanity deploy
-        run: sudo sanity deploy
+      - name: sanity login and deployment
+        run: |
+           yes ""| sudo sanity login
+           sudo sanity deploy
      
      
          
