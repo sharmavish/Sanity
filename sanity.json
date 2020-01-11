@@ -14,6 +14,7 @@
     "@sanity/default-login",
     "@sanity/desk-tool",
     "@sanity/google-maps-input"
+    "@sanity/core"
   ],
   "env": {
     "development": {
