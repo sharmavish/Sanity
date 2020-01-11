@@ -17,15 +17,16 @@ jobs:
          
       - name: Sanity check 
         run: sudo sanity check
-    
-      - name: Set permission
-        run: sudo chmod 777 -R ${GITHUB_WORKSPACE}
         
       - name: Sanity build 
-        run: sudo sanity build
+        run: 
+          sudo chmod 777 -R ${GITHUB_WORKSPACE}
+          sudo sanity build
       - name: check dist folder
         run: ls -l  
       
+      - name: sanity login
+        run: yes ""| sudo sanity login
       - name: Sanity deploy
         run: sudo sanity deploy
      
