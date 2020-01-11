@@ -25,6 +25,10 @@ jobs:
         run: sudo sanity build
       - name: check dist folder
         run: ls -l  
+      
+      - name: Sanity deploy
+        run: sudo sanity deploy
+     
      
          
    
