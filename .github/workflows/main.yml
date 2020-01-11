@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-   # - uses: actions/checkout@v1
-    - name: install sanity cli
-      run: npm install -g @sanity/cli
+    - name: Install NPM and sanity 
+      run: |
+        sudo apt update
+        sudo apt install nodejs
+        sudo npm install -g @sanity/cli
     
