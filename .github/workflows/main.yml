@@ -20,8 +20,11 @@ jobs:
     
       - name: Set permission
         run: sudo chmod 777 -R ${GITHUB_WORKSPACE}
+        
       - name: Sanity build 
         run: sudo sanity build
+      - name: check dist folder
+        run: ls -l  
      
          
    
