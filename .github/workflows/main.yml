@@ -1,0 +1,19 @@
+name: Sanity_CICD
+
+on:
+  push:
+    branches:
+    - master
+jobs:
+  sanit_check:
+    name: sanity check 
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install NPM and sanity 
+      run: |
+        sudo apt update
+        sudo apt install nodejs
+        sudo npm install -g @sanity/cli
+        sudo sanity check
+    
