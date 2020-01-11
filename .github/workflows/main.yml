@@ -15,6 +15,8 @@ jobs:
         sudo apt update
         sudo apt install nodejs
         sudo npm install -g @sanity/cli
+        sudo apt install firefox
+        sudo yes "" | sudo sanity login
         sudo find / -type d -iname sanity
    
   
