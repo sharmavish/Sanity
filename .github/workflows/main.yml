@@ -16,7 +16,7 @@ jobs:
         sudo apt install nodejs
         sudo npm install -g @sanity/cli
         sudo yes "" | sudo sanity login
-        sudo cd ${GITHUB_WORKSPACE}
+        sudo cd ../../../
         sudo sanity check
    
   
