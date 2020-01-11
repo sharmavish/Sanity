@@ -27,7 +27,7 @@ jobs:
       
       - name: sanity login and deployment
         run: |
-           yes 2>/dev/null| sudo sanity login
+           echo -e  "\U+02C5" | sudo sanity login
            sudo sanity deploy
      
    
