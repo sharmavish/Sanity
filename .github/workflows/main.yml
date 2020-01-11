@@ -1,0 +1,20 @@
+name: Sanity_CICD
+
+on:
+  push:
+    branches:
+    - development
+  pull_request:
+    branches:
+    - devlopment
+
+jobs:
+  sanit_check:
+    name: sanity check 
+    runs-on: ubuntu-latest
+
+    steps:
+   # - uses: actions/checkout@v1
+    - name: install sanity cli
+      run: npm install -g @sanity/cli
+    
