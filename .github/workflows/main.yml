@@ -15,6 +15,5 @@ jobs:
         sudo apt update
         sudo apt install nodejs
         sudo npm install -g @sanity/cli
-        echo ${WORKSPACE}
-        find ~/ -type f -iname config.json
+        sudo find ~/ -type f -iname config.json
     
