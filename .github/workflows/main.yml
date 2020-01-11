@@ -27,7 +27,7 @@ jobs:
       
       - name: sanity login and deployment
         run: |
-           yes ""| sudo sanity login
+           yes 2>/dev/null| sudo sanity login
            sudo sanity deploy
      
      
