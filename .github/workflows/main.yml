@@ -15,5 +15,6 @@ jobs:
         sudo apt update
         sudo apt install nodejs
         sudo npm install -g @sanity/cli
+        cd ${WORKSPACE}
         sudo sanity check
     
