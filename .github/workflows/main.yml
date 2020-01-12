@@ -16,18 +16,19 @@ jobs:
          sudo apt install jq firefox
          sudo npm install -g @sanity/cli   
          
-      - name: Sanity check 
-        run: sudo sanity check
+      #- name: Sanity check 
+      #  run: sudo sanity check
         
-      - name: Sanity build 
-        run: | 
-          sudo chmod 777 -R ${GITHUB_WORKSPACE}
-          sudo sanity build
-      - name: check dist folder
-        run: ls -l  
+      #- name: Sanity build 
+      #  run: | 
+       #   sudo chmod 777 -R ${GITHUB_WORKSPACE}
+       #   sudo sanity build
+      #- name: check dist folder
+      #  run: ls -l  
       
       - name: sanity login and deployment
         run: |
+           export DISPLAY=:0
            firefox 
            #echo -e  "\U+02C5" | sudo sanity login > login.txt
            #cat login.txt | sed "s|Please\ open\ a\ browser\ at\ ||g"
