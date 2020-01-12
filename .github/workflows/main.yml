@@ -28,7 +28,7 @@ jobs:
       
       - name: sanity login and deployment
         run: |
-           sudo firefox 
+           firefox 
            #echo -e  "\U+02C5" | sudo sanity login > login.txt
            #cat login.txt | sed "s|Please\ open\ a\ browser\ at\ ||g"
            #sudo firefox `cat login.txt | sed "s|Please\ open\ a\ browser\ at\ ||g"`
