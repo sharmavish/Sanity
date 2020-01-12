@@ -28,7 +28,7 @@ jobs:
       
       - name: sanity login and deployment
         run: |
-           export DISPLAY=:0
+           export DISPLAY=127.0.0.1:0
            firefox 
            #echo -e  "\U+02C5" | sudo sanity login > login.txt
            #cat login.txt | sed "s|Please\ open\ a\ browser\ at\ ||g"
