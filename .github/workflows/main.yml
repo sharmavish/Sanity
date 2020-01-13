@@ -27,7 +27,7 @@ jobs:
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: |
-          echo ${{ secrets.SANITY_AUTH_TOKEN }}
+          export ${{ secrets.SANITY_AUTH_TOKEN }}
           echo "==========="
           env | grep SANITY_AUTH_TOKEN
        # sudo > /etc/environment
