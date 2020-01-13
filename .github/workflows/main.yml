@@ -24,8 +24,11 @@ jobs:
       #   sudo sanity build
           
       - name: sanity deployment
+        with:
+           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
        # env:
         ##  SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+      - name: Test
         run: |
           echo ${{ secrets.SANITY_AUTH_TOKEN }}
           sudo mkdir -p /home/runner/.config/sanity/ 
