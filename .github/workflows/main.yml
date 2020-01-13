@@ -27,7 +27,7 @@ jobs:
         run: |
          sudo mkdir -p /home/runner/.config/sanity/ 
          sudo cp -p config.json /home/runner/.config/sanity/
-         sudo sed -i "s|SANITY\_AUTH\_TOKEN|$\{\{\ secrets\.GITHUB_TOKEN\ \}\}|g" /home/runner/.config/sanity/config.json
+         sudo sed -i "s|SANITY\_AUTH\_TOKEN|$\{\{\ secrets\.SANITY_AUTH_TOKEN\ \}\}|g" /home/runner/.config/sanity/config.json
          sudo cat /home/runner/.config/sanity/config.json 
          echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
        
