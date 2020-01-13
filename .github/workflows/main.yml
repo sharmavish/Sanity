@@ -25,9 +25,9 @@ jobs:
           
       - name: sanity deployment
         env:
-          SANITY_AUTH_TOKEN: ${{ secrets.TEST }}
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: |
-          echo ${{ secrets.TEST }}
+          echo ${{ secrets.SANITY_AUTH_TOKEN }}
           env | grep SANITY_AUTH_TOKEN
        # sudo > /etc/environment
        # echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
