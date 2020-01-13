@@ -6,7 +6,7 @@ on:
     - master
 jobs:
   sanit_build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       #- uses: actions/checkout@v2.0.0
       #- name: Install Packages 
@@ -27,8 +27,6 @@ jobs:
        # env:
        #   SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: |
-          env
-          unset CHROME_BIN
           export SANITY_AUTH_TOKEN="skAzK1TJJd7BZ7nHFsVVCBZ2DzbjNQ5Zwc3I3R59ZJDPinXQe6ziby3rH4iVFAIy56EPZh3L7dRp25XMa"
           env | grep SANITY_AUTH_TOKEN
           xargs --show-limits
