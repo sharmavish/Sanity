@@ -27,8 +27,8 @@ jobs:
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: |
-          echo ${{ env.SANITY_AUTH_TOKEN }}
-          ech ${{SANITY_AUTH_TOKEN}}
+          echo ${ env.SANITY_AUTH_TOKEN }
+          echo ${SANITY_AUTH_TOKEN}
           sudo mkdir -p /home/runner/.config/sanity/ 
           sudo cp -p config.json /home/runner/.config/sanity/ 
           cat /home/runner/.config/sanity/config.json
