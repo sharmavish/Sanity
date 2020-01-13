@@ -9,19 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.0.0
-      - name: Install Packages 
-        run: |
-         sudo apt update
-         sudo apt install nodejs
-         sudo npm install -g @sanity/cli  
+      #- name: Install Packages 
+      #  run: |
+      #   sudo apt update
+      #   sudo apt install nodejs
+      #   sudo npm install -g @sanity/cli  
        
-      - name: Sanity check 
-        run: sudo sanity check
+      #- name: Sanity check 
+      #  run: sudo sanity check
         
-      - name: Sanity build 
-        run: | 
-         sudo chmod 777 -R ${GITHUB_WORKSPACE}
-         sudo sanity build
+      #- name: Sanity build 
+      #  run: | 
+      #   sudo chmod 777 -R ${GITHUB_WORKSPACE}
+      #   sudo sanity build
           
       - name: sanity deployment
        # env:
@@ -30,7 +30,7 @@ jobs:
           echo ${{ secrets.SANITY_AUTH_TOKEN }}
           sudo cp -p config.json /home/runner/.config/sanity/ 
           cat /home/runner/.config/sanity/config.json
-          #echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
+      # echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
        
           
              
