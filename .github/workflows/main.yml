@@ -30,6 +30,7 @@ jobs:
         run: | 
          sudo chmod 777 -R ${GITHUB_WORKSPACE}
          sudo sanity build
+         sudo env
        
       - name: sanity login and deployment
         run: |
