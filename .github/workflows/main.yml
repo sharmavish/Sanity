@@ -29,7 +29,7 @@ jobs:
         run: |
          # echo -e  "\U+02C5" | sudo sanity login 
           #echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
-          sudo env 
+         env 
              
  
      
