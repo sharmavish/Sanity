@@ -9,8 +9,9 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       #- uses: actions/checkout@v2.0.0
-      #- name: Install Packages 
-      #  run: |
+      - name: Install Packages 
+        run: |
+          sudo mvn -version
       #   sudo apt update
       #   sudo apt install nodejs
       #   sudo npm install -g @sanity/cli  
