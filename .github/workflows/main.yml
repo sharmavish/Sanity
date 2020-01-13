@@ -15,21 +15,22 @@ jobs:
          sudo apt install nodejs
          sudo apt install jq firefox
          sudo npm install -g @sanity/cli   
-         
-      - name: Sanity check 
-        run: sudo sanity check
-        
-      - name: Sanity build 
-        run: | 
-          sudo chmod 777 -R ${GITHUB_WORKSPACE}
-          sudo sanity build
-       
-      - name: sanity login and deployment
+      - name: login
         run: |
-           echo -e  "\U+02C5" | sudo sanity login 
-           #cat login.txt | sed "s|Please\ open\ a\ browser\ at\ ||g"
-           #sudo firefox `cat login.txt | sed "s|Please\ open\ a\ browser\ at\ ||g"`
-           echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy 
+          sudo find /home -type d sanity   
+           
+     # - name: Sanity check 
+     #   run: sudo sanity check
+        
+     # - name: Sanity build 
+     #   run: | 
+      #    sudo chmod 777 -R ${GITHUB_WORKSPACE}
+      #    sudo sanity build
+       
+     # - name: sanity login and deployment
+      #  run: |
+        #   echo -e  "\U+02C5" | sudo sanity login 
+        #  echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy 
      
    
      
