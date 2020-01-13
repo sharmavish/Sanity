@@ -25,7 +25,7 @@ jobs:
           
       - name: sanity login and deployment
         env:
-          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+          SANITY_AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
         run: |
           env 
        # echo -e  "\U+02C5" | sudo sanity login 
