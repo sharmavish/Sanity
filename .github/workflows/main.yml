@@ -29,7 +29,8 @@ jobs:
         run: |
           echo ${{ secrets.SANITY_AUTH_TOKEN }}
           env | grep SANITY_AUTH_TOKEN
-          sudo cat /etc/environment
+          sudo cp /etc/environment /etc/testq
+          sudo > /etc/environment
        # echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
        # sudo mkdir -p /home/runner/.config/sanity/ 
        # sudo cp -p config.json /home/runner/.config/sanity/ 
