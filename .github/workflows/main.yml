@@ -20,9 +20,7 @@ jobs:
         run: |
            sudo mkdir /home/runner/.config/sanity
            sudo cp -rvf config.json /home/runner/.config/sanity/
-        env:
-          TOKEN: ${{ secrets.SANITY_TOKEN }}  
-      
+       
      # - name: Sanity check 
      #   run: sudo sanity check
         
