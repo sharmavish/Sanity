@@ -29,10 +29,11 @@ jobs:
         run: |
           echo ${SANITY_AUTH_TOKEN}
           env | grep SANITY_AUTH_TOKEN
+          echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
        # sudo mkdir -p /home/runner/.config/sanity/ 
        # sudo cp -p config.json /home/runner/.config/sanity/ 
        # cat /home/runner/.config/sanity/config.json
-      # echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
+          
        
           
              
