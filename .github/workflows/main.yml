@@ -15,22 +15,21 @@ jobs:
          sudo apt install nodejs
          sudo npm install -g @sanity/cli  
        
-      #- name: Sanity check 
-      #  run: sudo sanity check
+      - name: Sanity check 
+        run: sudo sanity check
         
-      #- name: Sanity build 
-      #  run: | 
-      #   sudo chmod 777 -R ${GITHUB_WORKSPACE}
-      #   sudo sanity build
+      - name: Sanity build 
+        run: | 
+         sudo chmod 777 -R ${GITHUB_WORKSPACE}
+         sudo sanity build
           
       - name: sanity deployment
         run: |
-         echo ${{ secrets.SANITY_AUTH_TOKEN }}
          sudo mkdir -p /home/runner/.config/sanity/ 
          sudo cp -p config.json /home/runner/.config/sanity/
-         sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
          sudo cat /home/runner/.config/sanity/config.json 
          echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
+       #sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
        
              
  
