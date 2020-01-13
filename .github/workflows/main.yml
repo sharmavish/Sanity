@@ -27,7 +27,7 @@ jobs:
        # env:
        #   SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: |
-          export SANITY_AUTH_TOKEN="skAzK1TJJd7BZ7nHFsVVCBZ2DzbjNQ5Zwc3I3R59ZJDPinXQe6ziby3rH4iVFAIy56EPZh3L7dRp25XMa"
+          export SANITY_AUTH_TOKEN="skAzK1TJJd7BZ7nHFsVVCBZ2DzbjNQ5Zwc3I3R59ZJDPinXQe6ziby3rH4iVFAIy56EPZh3"
           env | grep SANITY_AUTH_TOKEN
           xargs --show-limits
        # echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
