@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.0.0
-      - name: GitHub Action to unlock git-crypt secrets
-        uses: sliteteam/github-action-git-crypt-unlock@1.0.2
       - name: Install Packages 
         run: |
          sudo apt update
@@ -26,8 +24,8 @@ jobs:
          sudo sanity build
           
       - name: sanity deployment
-        env:
-          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+       # env:
+        #  SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: |
           sudo cp -p config.json /home/runner/.config/sanity/ 
           echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
