@@ -17,8 +17,8 @@ jobs:
          sudo npm install -g @sanity/cli   
       - name: login
         run: |
-          ls -l /home/runner/
-          ls -l /home/runner/.config/sanity/
+          ls -al /home/runner/
+          sudo ls -l /home/runner/.config/sanity/
            
      # - name: Sanity check 
      #   run: sudo sanity check
