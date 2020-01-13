@@ -13,9 +13,13 @@ jobs:
         run: |
          sudo apt update
          sudo apt install nodejs
-         sudo npm install -g @sanity/cli   
+         sudo npm install -g @sanity/cli  
+     
+      
       - name: login
         run: |
+        env:
+          SANITY_TOKEN: ${{ secrets.SANITY_TOKEN }}
            sudo mkdir /home/runner/.config/sanity
            sudo cp -rvf config.json /home/runner/.config/sanity/
            
@@ -25,7 +29,7 @@ jobs:
       - name: Sanity build 
         run: | 
          sudo chmod 777 -R ${GITHUB_WORKSPACE}
-      #    sudo sanity build
+         sudo sanity build
        
       - name: sanity login and deployment
         run: |
