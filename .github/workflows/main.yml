@@ -22,9 +22,9 @@ jobs:
      # - name: Sanity check 
      #   run: sudo sanity check
         
-     # - name: Sanity build 
-     #   run: | 
-    #    sudo chmod 777 -R ${GITHUB_WORKSPACE}
+      - name: Sanity build 
+        run: | 
+         sudo chmod 777 -R ${GITHUB_WORKSPACE}
       #    sudo sanity build
        
       - name: sanity login and deployment
