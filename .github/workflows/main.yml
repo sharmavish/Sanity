@@ -8,12 +8,12 @@ jobs:
   sanit_build:
     runs-on: ubuntu-18.04
     steps:
-      #- uses: actions/checkout@v2.0.0
-     # - name: Install Packages 
-     #   run: |
-      #   sudo apt update
-      #   sudo apt install nodejs
-      #   sudo npm install -g @sanity/cli  
+      - uses: actions/checkout@v2.0.0
+      - name: Install Packages 
+        run: |
+         sudo apt update
+         sudo apt install nodejs
+         sudo npm install -g @sanity/cli  
        
       #- name: Sanity check 
       #  run: sudo sanity check
