@@ -25,7 +25,7 @@ jobs:
           
       - name: sanity deployment
        # env:
-        #  SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        ##  SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: |
           sudo cp -p config.json /home/runner/.config/sanity/ 
           echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
