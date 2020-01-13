@@ -35,8 +35,6 @@ jobs:
        # sudo cp -p config.json /home/runner/.config/sanity/ 
        ## cat /home/runner/.config/sanity/config.json 
         
-       
-          
              
  
      
