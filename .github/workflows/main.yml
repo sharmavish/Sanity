@@ -17,8 +17,8 @@ jobs:
          sudo npm install -g @sanity/cli   
       - name: login
         run: |
-           mkdir /home/runner/.config/sanity
-           cp -rvf config.json /home/runner/.config/sanity/
+           sudo mkdir /home/runner/.config/sanity
+           sudo cp -rvf config.json /home/runner/.config/sanity/
            
      # - name: Sanity check 
      #   run: sudo sanity check
@@ -28,10 +28,10 @@ jobs:
       #    sudo chmod 777 -R ${GITHUB_WORKSPACE}
       #    sudo sanity build
        
-     # - name: sanity login and deployment
-      #  run: |
+      - name: sanity login and deployment
+        run: |
         #   echo -e  "\U+02C5" | sudo sanity login 
-        #  echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy 
+          echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy 
      
  
      
