@@ -28,7 +28,7 @@ jobs:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: |
          # echo -e  "\U+02C5" | sudo sanity login 
-          #echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
+         echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
          env 
              
  
