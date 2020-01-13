@@ -1,5 +1,5 @@
 {
         "cliLastUpdateCheck": 1578895693853,
-        "authToken": "${SANITY_AUTH_TOKEN}",
+        "authToken": "${{ secrets.SANITY_AUTH_TOKEN }}",
         "authType": "normal"
 }
