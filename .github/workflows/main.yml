@@ -19,11 +19,12 @@ jobs:
        
       - name: Sonar analyis 
         run: |
-           mkdir /opt/sonarscanner && cd /opt/sonarscanner/
+           sudo mkdir /opt/sonarscanner && cd /opt/sonarscanner/
            wget –quiet https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
-           unzip sonar-scanner-cli-3.3.0.1492.zip && rm sonar-scanner-cli-3.3.0.1492.zip
+           ls 
+           sudo unzip sonar-scanner-cli-3.3.0.1492.zip && sudo rm sonar-scanner-cli-3.3.0.1492.zip
            cd sonar-scanner-3.3.0.1492 && cd bin && ls -ltr
-           chmod -R 777 sonar-scanner
+           sudo chmod -R 777 sonar-scanner
            echo "sonar.login=${{ secrets.SONAR_TOKEN }}" >> sonar-project.properties
            echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
            ./sonar-scanner        
