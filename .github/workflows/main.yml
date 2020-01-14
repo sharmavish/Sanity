@@ -22,7 +22,7 @@ jobs:
            sudo mkdir /opt/sonarscanner && cd /opt/sonarscanner/
            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
            sudo unzip sonar-scanner-cli-3.3.0.1492.zip && sudo rm -rf sonar-scanner-cli-3.3.0.1492.zip
-           sudo chmod -R sonar-scanner-3.3.0.1492
+           sudo chmod -R 777 sonar-scanner-3.3.0.1492
            sudo cd sonar-scanner-3.3.0.1492/bin
            ls
        #echo "sonar.login=${{ secrets.SONAR_USERNAME }}" >> sonar-project.properties
