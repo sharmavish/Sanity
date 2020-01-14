@@ -24,8 +24,10 @@ jobs:
            sudo unzip sonar-scanner-cli-3.3.0.1492.zip && sudo rm sonar-scanner-cli-3.3.0.1492.zip
            cd sonar-scanner-3.3.0.1492/bin
            sudo chmod -R 777 sonar-scanner 
-           echo "sonar.login=${{ secrets.SONAR_TOKEN }}" >> sonar-project.properties
+           echo "sonar.login=${{ secrets.SONAR_USERNAME }}" >> sonar-project.properties
+            echo "sonar.password=${{ secrets.SONAR_PASSWORD }}" >> sonar-project.properties
            echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
+           cat sonar-project.properties
            sudo chmod 777 -R ${GITHUB_WORKSPACE}
            sudo ./sonar-scanner        
            
