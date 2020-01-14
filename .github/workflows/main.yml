@@ -9,34 +9,39 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2.0.0
-    #  - name: Install Packages 
-    #    run: |
-    #     sudo apt update
-    #     sudo apt install nodejs
-    #     sudo npm install -g @sanity/cli  
+      - name: Install Packages 
+        run: |
+         sudo apt update
+         sudo apt install nodejs
+         sudo apt install openjdk8-jre-base
+         sudo npm install -g @sanity/cli  
        
-    #  - name: Sanity check 
-    #    run: sudo sanity check
+      - name: Sanity check 
+        run: sudo sanity check
        
       - name: Sonar analyis 
         run: |
-           echo "sonar.login=${{ secrets.SONAR_TOKEN }}" > sonar-project.properties
+           mkdir /opt/sonarscanner && cd /opt/sonarscanner/
+           wget –quiet https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
+           unzip sonar-scanner-cli-3.3.0.1492.zip && rm sonar-scanner-cli-3.3.0.1492.zip
+           cd sonar-scanner-3.3.0.1492 && cd bin && ls -ltr
+           chmod -R 777 sonar-scanner
+           echo "sonar.login=${{ secrets.SONAR_TOKEN }}" >> sonar-project.properties
            echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
            cat ${GITHUB_WORKSPACE}/sonar-project.properties
-  
+           ./sonar-scanner        
            
-     
-    #  - name: Sanity build 
-    #    run: | 
-    #     sudo chmod 777 -R ${GITHUB_WORKSPACE}
-    #     sudo sanity build
+      - name: Sanity build 
+        run: | 
+         sudo chmod 777 -R ${GITHUB_WORKSPACE}
+         sudo sanity build
           
-    #  - name: sanity deployment
-    #    run: |
-    #     sudo mkdir -p /home/runner/.config/sanity/ 
-    #     sudo cp -p config.json /home/runner/.config/sanity/
-    #     sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
-    #     echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
+      - name: sanity deployment
+        run: |
+         sudo mkdir -p /home/runner/.config/sanity/ 
+         sudo cp -p config.json /home/runner/.config/sanity/
+         sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
+         echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
          
        
              
