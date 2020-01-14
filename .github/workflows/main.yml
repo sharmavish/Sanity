@@ -11,9 +11,7 @@ jobs:
       - uses: actions/checkout@v2.0.0
       - name: Install Packages 
         run: |
-         sudo apt update
-         sudo apt install nodejs
-         sudo apt install openjdk-8-jdk
+         sudo apt update && sudo apt install nodejs openjdk-8-jdk unzip
          sudo npm install -g @sanity/cli  
        
       - name: Sanity check 
