@@ -20,7 +20,7 @@ jobs:
       - name: Sonar analyis 
         run: |
            sudo mkdir /opt/sonarscanner && cd /opt/sonarscanner/
-           wget –quiet https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
+           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
            ls 
            sudo unzip sonar-scanner-cli-3.3.0.1492.zip && sudo rm sonar-scanner-cli-3.3.0.1492.zip
            cd sonar-scanner-3.3.0.1492 && cd bin && ls -ltr
