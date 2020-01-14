@@ -20,7 +20,8 @@ jobs:
        
       - name: Sonar analyis 
         run: |
-           echo sonar.projectName=Nexxus-Linnox-${GITHUB_WORKFLOW} 
+           echo "sonar.login=${{ secrets.SONAR_TOKEN }}" > sonar-project.properties
+           echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
            cat ${GITHUB_WORKSPACE}/sonar-project.properties
   
            
