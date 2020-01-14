@@ -20,8 +20,9 @@ jobs:
        
       - name: Sonar analyis 
         run: |
+           echo sonar.projectName=Nexxus-Linnox-${GITHUB_WORKFLOW} 
            cat ${GITHUB_WORKSPACE}/sonar-project.properties
-        shell: bash
+  
            
      
     #  - name: Sanity build 
