@@ -18,8 +18,8 @@ jobs:
     #  - name: Sanity check 
     #    run: sudo sanity check
        
-       - name: Sonar analyis 
-         run: |
+      - name: Sonar analyis 
+        run: |
            cat ${GITHUB_WORKSPACE}/sonar-project.properties
            
      
