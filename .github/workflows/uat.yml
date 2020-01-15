@@ -13,6 +13,7 @@ jobs:
         run: |
          sudo apt update && sudo apt install nodejs openjdk-8-jre unzip
          sudo npm install -g @sanity/cli netlify-cli
+      - if: github.event_name == 'pull_request' || github.event_name == 'push'
          
       - name: Setup Sanity Environment
         env:
@@ -21,9 +22,11 @@ jobs:
           DATEAET_NAME: "uatdataset"
         run: |
           sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json  
-           
+      - if: github.event_name == 'pull_request' || github.event_name == 'push'
+         
       - name: Sanity Check 
         run: sudo sanity check
+      - if: github.event_name == 'pull_request' || github.event_name == 'push'
         
      # - name: Sonar Analyis 
      #   run: |
