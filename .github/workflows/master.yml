@@ -14,7 +14,7 @@ jobs:
          sudo apt update && sudo apt install nodejs openjdk-8-jre unzip
          sudo npm install -g @sanity/cli netlify-cli
          
-      - name: Setp Sanity Environment
+      - name: Setup Sanity Environment
         env:
           PROJECT_NAME: "demo1"
           PROJECT_ID: "n6wcd0td"
@@ -22,7 +22,7 @@ jobs:
         run: |
           sudo sed -e "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
        
-      - name: Sanity check 
+      - name: Sanity Check 
         run: sudo sanity check
        
      # - name: Sonar Analyis 
