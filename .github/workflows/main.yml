@@ -17,9 +17,10 @@ jobs:
       - name: Testing 
         run: |
           sudo find / -type f -iname deploy.js
-      
-     # - name: Sanity check 
-     #   run: sudo sanity check
+          sudo cat /usr/local/lib/node_modules/netlify-cli/src/commands/deploy.js
+          
+      - name: Sanity check 
+        run: sudo sanity check
        
      # - name: Sonar analyis 
      #   run: |
@@ -29,22 +30,22 @@ jobs:
      #      echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
      #      sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
            
-     # - name: Sanity build 
-     #   run: | 
-     #    sudo chmod -R 777 ${GITHUB_WORKSPACE}
-     #    sudo sanity build
+      - name: Sanity build 
+        run: | 
+         sudo chmod -R 777 ${GITHUB_WORKSPACE}
+         sudo sanity build
           
-     # - name: sanity deployment
-     #   run: |
-     #    sudo mkdir -p /home/runner/.config/sanity/ 
-     #    sudo cp -p config.json /home/runner/.config/sanity/
-     #    sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
-     #    echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
-     #  
-     # - name: Deploy to Netlify
-     #   run: |
-     #    sudo netlify deploy 
-     #      
+      - name: sanity deployment
+        run: |
+         sudo mkdir -p /home/runner/.config/sanity/ 
+         sudo cp -p config.json /home/runner/.config/sanity/
+         sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
+         echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
+       
+      - name: Deploy to Netlify
+        run: |
+         sudo netlify deploy -p -s 9f430f25-e8d7-430a-969e-c1dc7ba0c206 
+           
          
        
              
