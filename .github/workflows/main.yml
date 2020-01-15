@@ -27,6 +27,7 @@ jobs:
            
       - name: Sanity build 
         run: | 
+         sudo chmod -R 777 ${GITHUB_WORKSPACE}
          sudo sanity build
           
       - name: sanity deployment
@@ -38,7 +39,7 @@ jobs:
        
       - name: Deploy to Netlify
         run: |
-         netlify deploy 
+         sudo netlify deploy 
            
          
        
