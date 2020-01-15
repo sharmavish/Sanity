@@ -12,18 +12,18 @@ jobs:
       - name: Install Packages 
         run: |
          sudo apt update && sudo apt install nodejs openjdk-8-jre unzip
-         sudo npm install -g @sanity/cli  
+         sudo npm install -g @sanity/cli netlify-cli
           
       - name: Sanity check 
         run: sudo sanity check
        
-      - name: Sonar analyis 
-        run: |
-           wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
-           sudo unzip sonar-scanner-cli-3.3.0.1492.zip && sudo chmod -R 777 sonar-scanner-3.3.0.1492 ${GITHUB_WORKSPACE}
-           echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
-           echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
-           sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
+     # - name: Sonar analyis 
+     #   run: |
+     #      wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
+     #      sudo unzip sonar-scanner-cli-3.3.0.1492.zip && sudo chmod -R 777 sonar-scanner-3.3.0.1492 ${GITHUB_WORKSPACE}
+     #      echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
+     #      echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
+     #      sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
            
       - name: Sanity build 
         run: | 
@@ -35,6 +35,11 @@ jobs:
          sudo cp -p config.json /home/runner/.config/sanity/
          sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
          echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
+       
+      - name: Deploy to Netlify
+        run: |
+         netlify deploy 
+           
          
        
              
