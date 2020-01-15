@@ -10,24 +10,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2.0.0
       - name: Install Packages 
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
         run: |
          sudo apt update && sudo apt install nodejs openjdk-8-jre unzip
          sudo npm install -g @sanity/cli netlify-cli
-      - if: github.event_name == 'pull_request' || github.event_name == 'push'
          
       - name: Setup Sanity Environment
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
         env:
           PROJECT_NAME: "uat-demo"
           PROJECT_ID: "4emjrfrr"
           DATEAET_NAME: "uatdataset"
         run: |
           sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json  
-      - if: github.event_name == 'pull_request' || github.event_name == 'push'
-         
+       
       - name: Sanity Check 
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
         run: sudo sanity check
-      - if: github.event_name == 'pull_request' || github.event_name == 'push'
-        
+              
      # - name: Sonar Analyis 
      #   run: |
      #      wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
