@@ -41,7 +41,7 @@ jobs:
         run: |
          export  NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
          env
-      #   sudo netlify deploy -p -s 9f430f25-e8d7-430a-969e-c1dc7ba0c206 
+         sudo netlify deploy -p -s 9f430f25-e8d7-430a-969e-c1dc7ba0c206 
            
          
        
