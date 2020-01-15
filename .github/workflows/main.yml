@@ -13,13 +13,9 @@ jobs:
         run: |
          sudo apt update && sudo apt install nodejs openjdk-8-jre unzip
          sudo npm install -g @sanity/cli netlify-cli
-      - name: Testing 
-        run: |
-          sudo find / -type f -iname deploy.js
-          sudo cat /usr/local/lib/node_modules/netlify-cli/src/commands/deploy.js
           
-      - name: Sanity check 
-        run: sudo sanity check
+    #  - name: Sanity check 
+    #    run: sudo sanity check
        
      # - name: Sonar analyis 
      #   run: |
@@ -29,10 +25,10 @@ jobs:
      #      echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
      #      sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
            
-      - name: Sanity build 
-        run: | 
-         sudo chmod -R 777 ${GITHUB_WORKSPACE}
-         sudo sanity build
+    #  - name: Sanity build 
+    #    run: | 
+    #     sudo chmod -R 777 ${GITHUB_WORKSPACE}
+    #     sudo sanity build
           
       - name: sanity deployment
         run: |
@@ -45,6 +41,7 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
+         env | grep NETLIFY_AUTH_TOKEN
          sudo netlify deploy -p -s 9f430f25-e8d7-430a-969e-c1dc7ba0c206 
            
          
