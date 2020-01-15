@@ -39,7 +39,7 @@ jobs:
      
       - name: Deploy to Netlify
         run: |
-         export  NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
+         export  NETLIFY_AUTH_TOKEN=1f485ffe5b807d693f39d7382a0b4a16951c0640884b51e74cc780147c131c8a
          sudo netlify deploy -p -s 9f430f25-e8d7-430a-969e-c1dc7ba0c206 
            
          
