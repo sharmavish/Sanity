@@ -19,15 +19,11 @@ jobs:
        
       - name: Sonar analyis 
         run: |
-           sudo mkdir /opt/sonarscanner
-           wget -P /opt/sonarscanner/ https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
-           sudo unzip /opt/sonarscanner/sonar-scanner-cli-3.3.0.1492.zip -d /opt/sonarscanner && sudo rm -rf /opt/sonarscanner/sonar-scanner-cli-3.3.0.1492.zip
-           sudo chmod -R 777 /opt/sonarscanner/sonar-scanner-3.3.0.1492
-           sudo cp -rfp /opt/sonarscanner/sonar-scanner-3.3.0.1492/bin/sonar-scanner /bin/sonar-scanner
+           wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
+           sudo unzip sonar-scanner-cli-3.3.0.1492.zip && sudo chmod -R 777 sonar-scanner-3.3.0.1492 ${GITHUB_WORKSPACE}
            echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
            echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
-           sudo chmod 777 -R ${GITHUB_WORKSPACE}
-           sudo /bin/sonar-scanner       
+           sudo ./sonar-scanner       
            
       #- name: Sanity build 
       #  run: | 
