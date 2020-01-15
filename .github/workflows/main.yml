@@ -12,8 +12,7 @@ jobs:
       - name: Install Packages 
         run: |
          sudo apt update && sudo apt install nodejs openjdk-8-jre unzip
-         sudo npm install -g netlify-cli
-         #sudo npm install -g @sanity/cli netlify-cli
+         sudo npm install -g @sanity/cli netlify-cli
       - name: Testing 
         run: |
           sudo find / -type f -iname deploy.js
@@ -43,6 +42,8 @@ jobs:
          echo `cat sanity.json  | jq -r .api.projectId` | sudo sanity deploy
        
       - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
          sudo netlify deploy -p -s 9f430f25-e8d7-430a-969e-c1dc7ba0c206 
            
