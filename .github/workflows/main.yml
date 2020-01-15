@@ -25,9 +25,9 @@ jobs:
      #      echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
      #      sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
            
-    #  - name: Sanity build 
-    #    run: | 
-    #     sudo chmod -R 777 ${GITHUB_WORKSPACE}
+      - name: Sanity build 
+        run: | 
+         sudo chmod -R 777 ${GITHUB_WORKSPACE}
     #     sudo sanity build
           
       - name: sanity deployment
