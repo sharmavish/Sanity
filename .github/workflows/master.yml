@@ -16,8 +16,8 @@ jobs:
          
       - name: Setup Sanity Environment
         env:
-          PROJECT_NAME: "demo1"
-          PROJECT_ID: "n6wcd0td"
+          PROJECT_NAME: "demosite1"
+          PROJECT_ID: "dhjj8fd2"
           DATEAET_NAME: "production"
         run: |
           sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json  
