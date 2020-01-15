@@ -20,7 +20,7 @@ jobs:
           PROJECT_ID: "n6wcd0td"
           DATEAET_NAME: "production"
         run: |
-          sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
+          sudo sed -e "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
           cat sanity.json 
       #- name: Sanity Check 
       #  run: sudo sanity check
