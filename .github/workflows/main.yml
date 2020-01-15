@@ -21,8 +21,7 @@ jobs:
         run: |
            sudo mkdir /opt/sonarscanner
            wget -P /opt/sonarscanner/ https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
-           sudo unzip /opt/sonarscanner/sonar-scanner-cli-3.3.0.1492.zip && sudo rm -rf /opt/sonarscanner/sonar-scanner-cli-3.3.0.1492.zip
-           ls -l 
+           sudo unzip /opt/sonarscanner/sonar-scanner-cli-3.3.0.1492.zip -d /opt/sonarscanner && sudo rm -rf /opt/sonarscanner/sonar-scanner-cli-3.3.0.1492.zip
            sudo chmod -R 777 /opt/sonarscanner/sonar-scanner-3.3.0.1492
            sudo cp -rfp /opt/sonarscanner/sonar-scanner-3.3.0.1492/bin/sonar-scanner /bin/sonar-scanner
            echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
