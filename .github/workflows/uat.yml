@@ -1,0 +1,53 @@
+name: PreProd Deployment
+
+on:
+  push:
+    branches:
+    - release-*
+jobs:
+  sanit_build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2.0.0
+      - name: Install Packages 
+        run: |
+         sudo apt update && sudo apt install nodejs openjdk-8-jre unzip
+         sudo npm install -g @sanity/cli netlify-cli
+         
+      - name: Setup Sanity Environment
+        env:
+          PROJECT_NAME: "uat-demo"
+          PROJECT_ID: "4emjrfrr"
+          DATEAET_NAME: "uatdataset"
+        run: |
+          sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json  
+           
+      - name: Sanity Check 
+        run: sudo sanity check
+        
+     # - name: Sonar Analyis 
+     #   run: |
+     #      wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
+     #      sudo unzip sonar-scanner-cli-3.3.0.1492.zip && rm -rf sonar-scanner-cli-3.3.0.1492.zip && sudo chmod -R 777 sonar-scanner-3.3.0.1492 ${GITHUB_WORKSPACE}
+     #      echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
+     #      echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
+     #      sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
+           
+      - name: Sanity Build 
+        run: | 
+         sudo chmod -R 777 ${GITHUB_WORKSPACE}
+         sudo sanity build
+          
+      - name: Deploy to Sanity
+        run: |           
+         sudo mkdir -p /home/runner/.config/sanity/ 
+         sudo cp -p config.json /home/runner/.config/sanity/
+         sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
+         echo `cat sanity.json  | jq -r .project.name` | sudo sanity deploy
+     
+      - name: Deploy to Netlify
+        env:
+          SITE_ID: "c313b1a5-f685-46c3-9e96-9acf8b681814"
+        run: |
+         export  NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
+         sudo netlify deploy -p --auth $NETLIFY_AUTH_TOKEN  -s ${SITE_ID}
