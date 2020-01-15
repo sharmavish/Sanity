@@ -28,7 +28,7 @@ jobs:
      # - name: Sanity build 
      #   run: | 
      #    sudo chmod -R 777 ${GITHUB_WORKSPACE}
-    #     sudo sanity build
+     #     sudo sanity build
           
      # - name: sanity deployment
      #   run: |
