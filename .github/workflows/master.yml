@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2.0.0
-      - name: Install Packages 
-        run: |
-         sudo apt update && sudo apt install nodejs openjdk-8-jre unzip
-         sudo npm install -g @sanity/cli netlify-cli
+     # - name: Install Packages 
+     #   run: |
+     #    sudo apt update && sudo apt install nodejs openjdk-8-jre unzip
+     #    sudo npm install -g @sanity/cli netlify-cli
          
       - name: Setup Sanity Environment
         env:
@@ -20,10 +20,10 @@ jobs:
           PROJECT_ID: "n6wcd0td"
           DATEAET_NAME: "production"
         run: |
-          sudo sed -e "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
-       
-      - name: Sanity Check 
-        run: sudo sanity check
+          sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
+          cat sanity.json 
+      #- name: Sanity Check 
+      #  run: sudo sanity check
        
      # - name: Sonar Analyis 
      #   run: |
@@ -33,22 +33,22 @@ jobs:
      #      echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
      #      sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
            
-      - name: Sanity Build 
-        run: | 
-         sudo chmod -R 777 ${GITHUB_WORKSPACE}
-         sudo sanity build
+     # - name: Sanity Build 
+     #   run: | 
+     #    sudo chmod -R 777 ${GITHUB_WORKSPACE}
+     #    sudo sanity build
           
-      - name: Deploy to Sanity
-        run: |           
-         sudo mkdir -p /home/runner/.config/sanity/ 
-         sudo cp -p config.json /home/runner/.config/sanity/
-         sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
-         echo `cat sanity.json  | jq -r .project.name` | sudo sanity deploy
+     # - name: Deploy to Sanity
+     #   run: |           
+     #    sudo mkdir -p /home/runner/.config/sanity/ 
+     #    sudo cp -p config.json /home/runner/.config/sanity/
+     #    sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
+     #    echo `cat sanity.json  | jq -r .project.name` | sudo sanity deploy
      
-      - name: Deploy to Netlify
-        env:
-          SITE_ID: "9f430f25-e8d7-430a-969e-c1dc7ba0c206"
-        run: |
-         export  NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
-         sudo netlify deploy -p --auth $NETLIFY_AUTH_TOKEN  -s ${SITE_ID}
+     # - name: Deploy to Netlify
+     #   env:
+     #     SITE_ID: "9f430f25-e8d7-430a-969e-c1dc7ba0c206"
+     #   run: |
+     #    export  NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
+     #    sudo netlify deploy -p --auth $NETLIFY_AUTH_TOKEN  -s ${SITE_ID}
          
