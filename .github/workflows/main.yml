@@ -25,11 +25,10 @@ jobs:
            sudo chmod -R 777 sonar-scanner-3.3.0.1492
            cd sonar-scanner-3.3.0.1492/bin
            ls -l
-           echo "sonar.login=${{ secrets.SONAR_USERNAME }}" >> sonar-project.properties
-           echo "sonar.password=${{ secrets.SONAR_PASSWORD }}" >> sonar-project.properties
+           echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
            echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
            sudo chmod 777 -R ${GITHUB_WORKSPACE}
-           sudo ./sonar-scanner        
+           sudo ./sonar-scanner -Dproject.settings=${GITHUB_WORKSPACE}/sonar-project.properties       
            
       #- name: Sanity build 
       #  run: | 
