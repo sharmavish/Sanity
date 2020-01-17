@@ -54,6 +54,6 @@ jobs:
          
       - name: Zap Security Check
         run: |
-          wget https://github.com/zaproxy/zaproxy/releases/download/v2.8.0/ZAP_2_8_0_unix.sh
-          sh ZAP_2_8_0_unix.sh
+          wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.8.0/ZAP_2_8_0_unix.sh
+          sudo sh ZAP_2_8_0_unix.sh
                    
