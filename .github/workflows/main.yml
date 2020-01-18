@@ -14,6 +14,6 @@ jobs:
       run: |
         wget https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
         sudo tar xzf ZAP_2.9.0_Linux.tar.gz
-        cd ZAP_2.9.0 && sh zap.sh -daemon && sudo netstat -tunlp
-        
+        cd ZAP_2.9.0
+        sudo ls -l
     
