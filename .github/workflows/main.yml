@@ -13,9 +13,8 @@ jobs:
     - name: Install ZAP
       run: |
         wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
-        apk add nodejs
-        npm install -g zap-cli
+        sudo apt update && sudo apt install nodejs && npm install -g zap-cli
         sudo tar xzf ZAP_2.9.0_Linux.tar.gz && cd ZAP_2.9.0
-        ./zap.sh -daemon &
+        ./zap.sh -daemon & 
         /usr/local/bin/zap-cli -p 8080 open-url https://dev-demo.netlify.com/
     
