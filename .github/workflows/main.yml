@@ -1,7 +1,8 @@
 name: CI
-
-on: [push]
-
+on:
+  push:
+    branches:
+    - feature-*
 jobs:
   build:
 
@@ -9,9 +10,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+    - name: Install ZAP
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        wget https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
+        sudo tar xzf ZAP_2.9.0_Linux.tar.gz
+        cd ZAP_2.9.0
+        sudo sh ./zap.sh -daemon &
+        sudo netstat -tunlp
+        
+    
