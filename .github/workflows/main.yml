@@ -15,6 +15,7 @@ jobs:
         pip install --upgrade awscli==1.17.5
         aws --version
         /usr/local/bin/aws --version
+        /usr/bin/aws --version
      #   aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
      #   aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
      #whereis aws
