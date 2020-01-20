@@ -13,10 +13,12 @@ jobs:
     - name: Install ZAP
       run: |
         pip install --upgrade awscli==1.17.5
-        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        whereis aws
-        aws s3 ls
+        aws --version
+        /usr/local/bin/aws --version
+     #   aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+     #   aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+     #whereis aws
+     #aws s3 ls
      #   wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
      #   sudo apt update && sudo apt install nodejs && sudo pip install zapcli
      #   sudo tar xzf ZAP_2.9.0_Linux.tar.gz && cd ZAP_2.9.0
