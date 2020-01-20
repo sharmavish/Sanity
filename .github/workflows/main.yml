@@ -21,7 +21,7 @@ jobs:
         && /usr/local/bin/zap-cli -v -p 8080 spider  https://dev-demo.netlify.com \
         && /usr/local/bin/zap-cli -v -p 8080 active-scan  --recursive https://dev-demo.netlify.com \
         && /usr/local/bin/zap-cli -p 8080  report  -o /tmp/index.html -f html \
-        && cat /tmp/index.html
+        && aws configure  && aws s3 ls
         
         
         
