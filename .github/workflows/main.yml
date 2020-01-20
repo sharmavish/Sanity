@@ -12,6 +12,7 @@ jobs:
     #- uses: actions/checkout@v1
     - name: Install ZAP
       run: |
+        sudo update && apt install python3.7
         sudo aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
         sudo aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws --version
