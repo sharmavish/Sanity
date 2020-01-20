@@ -13,7 +13,7 @@ jobs:
     - name: Install ZAP
       run: |
         pip install --upgrade awscli==1.17.5
-        ls /usr/local/aws
+        ls /usr/local/aws/bin
      #   aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
      #   aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
      #whereis aws
