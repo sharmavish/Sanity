@@ -15,7 +15,7 @@ jobs:
         pip install --upgrade awscli==1.17.5
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        /usr/local/aws/bin/aws s3 ls
+        /usr/local/aws/bin/aws s3 ls s3://zapanalysis
      #whereis aws
      #aws s3 ls
      #   wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
