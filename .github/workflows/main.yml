@@ -14,9 +14,9 @@ jobs:
       run: |
         sudo apt update && sudo apt install python3-setuptools python3
         sudo pip3 install --upgrade awscli==1.17.5
-        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        /usr/local/aws/bin/aws s3 ls 
+        sudo aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+        sudo aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        sudo /usr/local/aws/bin/aws s3 ls 
      #whereis aws
      #aws s3 ls
      #   wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
