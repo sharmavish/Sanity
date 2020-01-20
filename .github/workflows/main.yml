@@ -13,6 +13,7 @@ jobs:
     - name: Install ZAP
       run: |
         pip install --upgrade awscli==1.17.5
+        whereis aws
         aws --version
         /usr/local/bin/aws --version
         /usr/local/aws --version
