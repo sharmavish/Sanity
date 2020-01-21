@@ -20,7 +20,7 @@ jobs:
         sudo /usr/local/bin/zap-cli -p 8080 open-url https://dev-demo.netlify.com \
         && /usr/local/bin/zap-cli -v -p 8080 spider  https://dev-demo.netlify.com \
         && /usr/local/bin/zap-cli -v -p 8080 active-scan  --recursive https://dev-demo.netlify.com \
-        && sudo mkdir -p ${GITHUB_WORKFLOW}/zapreport \
+        && sudo mkdir -p ${GITHUB_WORKSPACE}/zapreport \
         && /usr/local/bin/zap-cli -p 8080  report  -o /tmp/index.html -f html 
      
     - name: AWS S3 Sync Action 
