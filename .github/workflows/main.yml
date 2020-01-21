@@ -10,33 +10,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Install ZAP
-      run: |
-        wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
-        sudo apt update && sudo apt install nodejs && sudo pip install zapcli
-        sudo tar xzf ZAP_2.9.0_Linux.tar.gz && cd ZAP_2.9.0
-        ./zap.sh -daemon  -config api.disablekey=true & 
-        sleep 30
-        sudo /usr/local/bin/zap-cli -p 8080 open-url https://dev-demo.netlify.com \
-        && /usr/local/bin/zap-cli -v -p 8080 spider  https://dev-demo.netlify.com \
-        && /usr/local/bin/zap-cli -v -p 8080 active-scan  --recursive https://dev-demo.netlify.com \
-        && sudo mkdir -p ${GITHUB_WORKSPACE}/zapreport && sudo chmod 777 ${GITHUB_WORKSPACE}/zapreport \
-        && /usr/local/bin/zap-cli -p 8080  report  -o ${GITHUB_WORKSPACE}/zapreport/index.html -f html 
+   # - name: Install ZAP
+   #   run: |
+   #     wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
+   #     sudo apt update && sudo apt install nodejs && sudo pip install zapcli
+   #     sudo tar xzf ZAP_2.9.0_Linux.tar.gz && cd ZAP_2.9.0
+   #     ./zap.sh -daemon  -config api.disablekey=true & 
+   #     sleep 30
+   #     sudo /usr/local/bin/zap-cli -p 8080 open-url https://dev-demo.netlify.com \
+   #     && /usr/local/bin/zap-cli -v -p 8080 spider  https://dev-demo.netlify.com \
+   #     && /usr/local/bin/zap-cli -v -p 8080 active-scan  --recursive https://dev-demo.netlify.com \
+   #     && sudo mkdir -p ${GITHUB_WORKSPACE}/zapreport && sudo chmod 777 ${GITHUB_WORKSPACE}/zapreport \
+   #     && /usr/local/bin/zap-cli -p 8080  report  -o ${GITHUB_WORKSPACE}/zapreport/index.html -f html 
      
     - name: AWS S3 Sync Action 
-      uses: awact/s3-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
+      env: 
         SOURCE_DIR: '${GITHUB_WORKSPACE}/zapreport'
         AWS_REGION: 'us-east-1'
         AWS_S3_BUCKET: 'zapscantest'
         AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
         AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-        
-    - name: test 
-      run: env
-      
+      run: |
+        env 
           
         
         
