@@ -9,24 +9,26 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    #- uses: actions/checkout@v1
+    - uses: actions/checkout@v1
     - name: Install ZAP
       run: |
-        sudo aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-        sudo aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws --version
-        sudo aws s3 ls 
-     #whereis aws
-     #aws s3 ls
-     #   wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
-     #   sudo apt update && sudo apt install nodejs && sudo pip install zapcli
-     #   sudo tar xzf ZAP_2.9.0_Linux.tar.gz && cd ZAP_2.9.0
-     #   ./zap.sh -daemon  -config api.disablekey=true & 
-     #   sleep 30
-     ##   sudo /usr/local/bin/zap-cli -p 8080 open-url https://dev-demo.netlify.com \
-     #   && /usr/local/bin/zap-cli -v -p 8080 spider  https://dev-demo.netlify.com \
-     #   && /usr/local/bin/zap-cli -v -p 8080 active-scan  --recursive https://dev-demo.netlify.com \
-     #   && /usr/local/bin/zap-cli -p 8080  report  -o /tmp/index.html -f html 
+        wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
+        sudo apt update && sudo apt install nodejs && sudo pip install zapcli
+        sudo tar xzf ZAP_2.9.0_Linux.tar.gz && cd ZAP_2.9.0
+        ./zap.sh -daemon  -config api.disablekey=true & 
+        sleep 30
+        sudo /usr/local/bin/zap-cli -p 8080 open-url https://dev-demo.netlify.com \
+        && /usr/local/bin/zap-cli -v -p 8080 spider  https://dev-demo.netlify.com \
+        && /usr/local/bin/zap-cli -v -p 8080 active-scan  --recursive https://dev-demo.netlify.com \
+        && /usr/local/bin/zap-cli -p 8080  report  -o /tmp/index.html -f html 
+        
+    - name: AWS S3 Sync Action
+      uses: awact/s3-action@0.1.1
+      with:
+       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+       AWS_S3_BUCKET: zapscantest
+       SOURCE_DIR: /tmp/index.html
           
         
         
