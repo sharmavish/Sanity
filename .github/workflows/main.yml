@@ -28,7 +28,7 @@ jobs:
         && export AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
         && aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID} \
         && aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY} \
-        && sed -i s"|ZAP|Nexxus-$(date +%d-%m-%Y-%T)|g" ${GITHUB_WORKSPACE}/zapreport/index.html \
+        && sed -i s"|ZAP\ Scanning|Nexxus\ ZAP \$(date +%d-%m-%Y-%T)|g" ${GITHUB_WORKSPACE}/zapreport/index.html \
         && aws s3 sync ${GITHUB_WORKSPACE}/zapreport/ s3://zaptestscan --acl public-read \
         && echo " " && echo "Please check the report at https://zaptestscan.s3.amazonaws.com/index.html"
         
