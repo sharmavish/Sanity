@@ -10,10 +10,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/checkout@v2
-      with:
-        repository: sharmavish/vishaltest
-        token: "${{ secrets.GITHUB_ACCESS_TOKEN }}"
+    #- uses: actions/checkout@v2
+    #  with:
+    #    repository: sharmavish/vishaltest
+    #    token: "${{ secrets.GITHUB_ACCESS_TOKEN }}"
+        
     #- name: Install ZAP
     #  run: |
     #    wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
