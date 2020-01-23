@@ -14,7 +14,6 @@ jobs:
       with:
         repository: sharmavish/vishaltest
         token: "${{ secrets.GITHUB_ACCESS_TOKEN }}"
-        path: "/tmp"
     #- name: Install ZAP
     #  run: |
     #    wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
@@ -44,6 +43,5 @@ jobs:
    #      git push https://${{ secrets.GITHUB_ACCESS_TOKEN }}@github.com/sharmavish/Sanity.git v$VERSION 
     - name: repos 
       run: |
-         ls 
-         ls /tmp    
+         ls   
     
