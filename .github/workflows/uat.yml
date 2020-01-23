@@ -15,8 +15,7 @@ jobs:
          token: "${{ secrets.GITHUB_ACCESS_TOKEN }}"
          path: 'plugins'
       - name: Install Packages 
-        run: |
-          ls plugins/DeVOps
+        shell: sh plugins/DeVOps/install.sh 
        
          
      # - name: Setup Sanity Environment
