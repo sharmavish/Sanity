@@ -10,10 +10,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    #- uses: actions/checkout@v2
-    #  with:
-    #    repository: sharmavish/vishaltest
-    #    token: "${{ secrets.GITHUB_ACCESS_TOKEN }}"
+    - uses: actions/checkout@v2
+      with:
+        repository: sharmavish/vishaltest
+        token: "${{ secrets.GITHUB_ACCESS_TOKEN }}"
+        path: "${GITHUB_WORKSPACE}"
         
     #- name: Install ZAP
     #  run: |
