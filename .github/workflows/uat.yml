@@ -9,63 +9,68 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2.0.0
+      - uses: actions/checkout@v2
+        with:
+         repository: sharmavish/vishaltest
+         token: "${{ secrets.GITHUB_ACCESS_TOKEN }}"
+         path: 'plugins'
       - name: Install Packages 
         run: |
-         sudo apt update && sudo apt install nodejs openjdk-8-jre unzip
-         sudo npm install -g @sanity/cli netlify-cli
+          ls plugins/DeVOps
+       
          
-      - name: Setup Sanity Environment
-        env:
-          PROJECT_NAME: "uat-demo"
-          PROJECT_ID: "4emjrfrr"
-          DATEAET_NAME: "uatdataset"
-        run: |
-          sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json  
+     # - name: Setup Sanity Environment
+     #   env:
+     #     PROJECT_NAME: "uat-demo"
+     #     PROJECT_ID: "4emjrfrr"
+     #     DATEAET_NAME: "uatdataset"
+     #   run: |
+     #     sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json  
            
-      - name: Sanity Check 
-        run: sudo sanity check
+    #  - name: Sanity Check 
+    #    run: sudo sanity check
         
-      - name: Sonar Analyis 
-        run: |
-           BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
-           wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
-           sudo unzip sonar-scanner-cli-3.3.0.1492.zip && rm -rf sonar-scanner-cli-3.3.0.1492.zip && sudo chmod -R 777 sonar-scanner-3.3.0.1492 ${GITHUB_WORKSPACE}
-           echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
-           echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
-           echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> sonar-project.properties
-           sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
+    #  - name: Sonar Analyis 
+    #    run: |
+    #       BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
+    #       wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
+    #       sudo unzip sonar-scanner-cli-3.3.0.1492.zip && rm -rf sonar-scanner-cli-3.3.0.1492.zip && sudo chmod -R 777 sonar-scanner-3.3.0.1492 ${GITHUB_WORKSPACE}
+    #       echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
+    #       echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
+    #       echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> sonar-project.properties
+    #       sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
            
-      - name: Sanity Build 
-        run: | 
-         sudo chmod -R 777 ${GITHUB_WORKSPACE}
-         sudo sanity build
+    #  - name: Sanity Build 
+    #    run: | 
+    #     sudo chmod -R 777 ${GITHUB_WORKSPACE}
+    #     sudo sanity build
           
-      - name: Deploy to Sanity
-        run: |           
-         sudo mkdir -p /home/runner/.config/sanity/ 
-         sudo cp -p config.json /home/runner/.config/sanity/
-         sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
-         echo `cat sanity.json  | jq -r .project.name` | sudo sanity deploy
+    #  - name: Deploy to Sanity
+    #    run: |           
+    #     sudo mkdir -p /home/runner/.config/sanity/ 
+    #     sudo cp -p config.json /home/runner/.config/sanity/
+    #     sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
+    #     echo `cat sanity.json  | jq -r .project.name` | sudo sanity deploy
      
-      - name: Deploy to Netlify
-        env:
-          SITE_ID: "c313b1a5-f685-46c3-9e96-9acf8b681814"
-        run: |
-         export  NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
-         sudo netlify deploy -p --auth $NETLIFY_AUTH_TOKEN  -s ${SITE_ID}
-         
-      - name: Install ZAP
-        run: |
-         wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
-         sudo apt update && sudo apt install nodejs && sudo pip install zapcli
-         sudo tar xzf ZAP_2.9.0_Linux.tar.gz && cd ZAP_2.9.0
-         ./zap.sh -daemon  -config api.disablekey=true & 
-         sleep 30
-         sudo /usr/local/bin/zap-cli -p 8080 open-url https://dev-demo.netlify.com \
-         && /usr/local/bin/zap-cli -v -p 8080 spider  https://dev-demo.netlify.com \
-         && /usr/local/bin/zap-cli -v -p 8080 active-scan  --recursive https://dev-demo.netlify.com \
-         && sudo mkdir -p ${GITHUB_WORKSPACE}/zapreport && sudo chmod 777 ${GITHUB_WORKSPACE}/zapreport \
-         && /usr/local/bin/zap-cli -p 8080  report  -o ${GITHUB_WORKSPACE}/zapreport/index.html -f html 
+    #  - name: Deploy to Netlify
+    #    env:
+    #      SITE_ID: "c313b1a5-f685-46c3-9e96-9acf8b681814"
+    #    run: |
+    #     export  NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
+    #     sudo netlify deploy -p --auth $NETLIFY_AUTH_TOKEN  -s ${SITE_ID}
+    #     
+    #  - name: Install ZAP
+    #    run: |
+    #     wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
+    #     sudo apt update && sudo apt install nodejs && sudo pip install zapcli
+    #     sudo tar xzf ZAP_2.9.0_Linux.tar.gz && cd ZAP_2.9.0
+    #     ./zap.sh -daemon  -config api.disablekey=true & 
+    #     sleep 30
+    #     sudo /usr/local/bin/zap-cli -p 8080 open-url https://dev-demo.netlify.com \
+    #     && /usr/local/bin/zap-cli -v -p 8080 spider  https://dev-demo.netlify.com \
+    #     && /usr/local/bin/zap-cli -v -p 8080 active-scan  --recursive https://dev-demo.netlify.com \
+    #     && sudo mkdir -p ${GITHUB_WORKSPACE}/zapreport && sudo chmod 777 ${GITHUB_WORKSPACE}/zapreport \
+    #     && /usr/local/bin/zap-cli -p 8080  report  -o ${GITHUB_WORKSPACE}/zapreport/index.html -f html 
          
      # - name: Upload report to S3
      #   run: |
@@ -77,8 +82,8 @@ jobs:
       #   && aws s3 sync ${GITHUB_WORKSPACE}/zapreport/ s3://zaptestscan --acl public-read \
       #   && echo " " && echo "Please check the report at https://zaptestscan.s3.amazonaws.com/index.html"
         
-      - name: Tagging Code
-        run: |
-         VERSION=`cat ${GITHUB_WORKSPACE}/package.json | jq -r .version`
-         git tag v$VERSION 
-         git push https://${{ secrets.GITHUB_ACCESS_TOKEN }}@github.com/sharmavish/Sanity.git v$VERSION 
+    #  - name: Tagging Code
+    #    run: |
+    #     VERSION=`cat ${GITHUB_WORKSPACE}/package.json | jq -r .version`
+    #     git tag v$VERSION 
+    #     git push https://${{ secrets.GITHUB_ACCESS_TOKEN }}@github.com/sharmavish/Sanity.git v$VERSION 
