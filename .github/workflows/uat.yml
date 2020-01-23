@@ -25,13 +25,13 @@ jobs:
       - name: Sanity Check 
         run: sudo sanity check
         
-     # - name: Sonar Analyis 
-     #   run: |
-     #      wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
-     #      sudo unzip sonar-scanner-cli-3.3.0.1492.zip && rm -rf sonar-scanner-cli-3.3.0.1492.zip && sudo chmod -R 777 sonar-scanner-3.3.0.1492 ${GITHUB_WORKSPACE}
-     #      echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
-     #      echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
-     #      sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
+      - name: Sonar Analyis 
+        run: |
+           wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
+           sudo unzip sonar-scanner-cli-3.3.0.1492.zip && rm -rf sonar-scanner-cli-3.3.0.1492.zip && sudo chmod -R 777 sonar-scanner-3.3.0.1492 ${GITHUB_WORKSPACE}
+           echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
+           echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
+           sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
            
       - name: Sanity Build 
         run: | 
@@ -51,3 +51,32 @@ jobs:
         run: |
          export  NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
          sudo netlify deploy -p --auth $NETLIFY_AUTH_TOKEN  -s ${SITE_ID}
+         
+      - name: Install ZAP
+        run: |
+         wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
+         sudo apt update && sudo apt install nodejs && sudo pip install zapcli
+         sudo tar xzf ZAP_2.9.0_Linux.tar.gz && cd ZAP_2.9.0
+         ./zap.sh -daemon  -config api.disablekey=true & 
+         sleep 30
+         sudo /usr/local/bin/zap-cli -p 8080 open-url https://dev-demo.netlify.com \
+         && /usr/local/bin/zap-cli -v -p 8080 spider  https://dev-demo.netlify.com \
+         && /usr/local/bin/zap-cli -v -p 8080 active-scan  --recursive https://dev-demo.netlify.com \
+         && sudo mkdir -p ${GITHUB_WORKSPACE}/zapreport && sudo chmod 777 ${GITHUB_WORKSPACE}/zapreport \
+         && /usr/local/bin/zap-cli -p 8080  report  -o ${GITHUB_WORKSPACE}/zapreport/index.html -f html 
+         
+      - name: Upload report to S3
+        run: |
+         export AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" \
+         && export AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+         && aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID} \
+         && aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY} \
+         && sed -i s"|ZAP\ Scanning\ Report|Nexxus\ ZAP\ Report\ $(date +%d-%m-%Y-%T)|g" ${GITHUB_WORKSPACE}/zapreport/index.html \
+         && aws s3 sync ${GITHUB_WORKSPACE}/zapreport/ s3://zaptestscan --acl public-read \
+         && echo " " && echo "Please check the report at https://zaptestscan.s3.amazonaws.com/index.html"
+        
+      - name: Tagging Code
+        run: |
+         VERSION=`cat ${GITHUB_WORKSPACE}/package.json | jq -r .version`
+         git tag v$VERSION 
+         git push https://${{ secrets.GITHUB_ACCESS_TOKEN }}@github.com/sharmavish/Sanity.git v$VERSION 
