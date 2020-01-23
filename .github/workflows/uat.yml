@@ -32,7 +32,7 @@ jobs:
            sudo unzip sonar-scanner-cli-3.3.0.1492.zip && rm -rf sonar-scanner-cli-3.3.0.1492.zip && sudo chmod -R 777 sonar-scanner-3.3.0.1492 ${GITHUB_WORKSPACE}
            echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
            echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
-           echo "sonar.branch.name="${BRANCH}"
+           echo "sonar.branch.name="${BRANCH}" >> sonar-project.properties
            sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
            
       - name: Sanity Build 
