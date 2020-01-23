@@ -44,7 +44,7 @@ jobs:
           
       - name: Deploy to Sanity
         run: |    
-         export SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" 
+         export SANITY_AUTH_TOKEN=`echo ${{ secrets.SANITY_AUTH_TOKEN }}` 
          echo `cat sanity.json  | jq -r .project.name` | sudo sanity deploy
      
     #  - name: Deploy to Netlify
