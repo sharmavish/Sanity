@@ -10,6 +10,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/checkout@v1
+      with:
+        repository: https://github.com/sharmavish/vishaltest.git
+        token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+        path: /tmp
     #- name: Install ZAP
     #  run: |
     #    wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz
@@ -32,10 +37,13 @@ jobs:
     #    && aws s3 sync ${GITHUB_WORKSPACE}/zapreport/ s3://zaptestscan --acl public-read \
     #    && echo " " && echo "Please check the report at https://zaptestscan.s3.amazonaws.com/index.html"
         
-    - name: Tag the Code
+   # - name: Tag the Code
+   #   run: |
+   #      VERSION=`cat ${GITHUB_WORKSPACE}/package.json | jq -r .version`
+   #      git tag v$VERSION 
+   #      git push https://${{ secrets.GITHUB_ACCESS_TOKEN }}@github.com/sharmavish/Sanity.git v$VERSION 
+    - name: repos 
       run: |
-         VERSION=`cat ${GITHUB_WORKSPACE}/package.json | jq -r .version`
-         git tag v$VERSION 
-         git push https://${{ secrets.GITHUB_ACCESS_TOKEN }}@github.com/sharmavish/Sanity.git v$VERSION 
-        
+         ls 
+         ls /tmp    
     
