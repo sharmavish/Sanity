@@ -30,13 +30,13 @@ jobs:
         run:  |
           sudo sanity check 
         
-      - name: Sonar Analyis 
-        run: |
-           BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
-           echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
-           echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
-           echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> sonar-project.properties
-           sudo ./sonar/bin/sonar-scanner       
+     # - name: Sonar Analyis 
+     #   run: |
+     #      BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
+     #      echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
+     #      echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
+     #      echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> sonar-project.properties
+     #      sudo ./sonar/bin/sonar-scanner       
            
       - name: Sanity Build 
         run: | 
