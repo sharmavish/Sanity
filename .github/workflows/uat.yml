@@ -18,7 +18,7 @@ jobs:
         run: sh plugins/DeVOps/install.sh 
        
          
-     ## - name: Setup Sanity Environment
+     # - name: Setup Sanity Environment
      #   env:
      #     PROJECT_NAME: "uat-demo"
      #     PROJECT_ID: "4emjrfrr"
