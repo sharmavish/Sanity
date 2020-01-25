@@ -19,17 +19,6 @@ def sonar = sonarscanner.execute()
 sonar.waitFor()              
 println "sonar Process exit code: ${sonar.exitValue()}"
 
-// Download ZAP Scanner.
-def zapscanner = "wget  -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz"
-def zap = zapscanner.execute()
-zap.waitFor()              
-println "sonar Process exit code: ${zap.exitValue()}"
-
-// Unzip the sonar zip
-def scanner = new AntBuilder()   
-scanner.unzip(  src:"sonar-scanner-cli-3.3.0.1492.zip",
-            dest:"./",
-            overwrite:"false" )
 
 // Unarchive the ZAP proxy 
 def zapproxy = new AntBuilder()   
@@ -38,10 +27,7 @@ zapproxy.untar(  src:"ZAP_2.9.0_Linux.tar.gz",
             compression:"gzip",
             overwrite:"false" )
 
-// Delete the ZAP and sonar scanner zip files 
 
- def sonararchive = new File('sonar-scanner-cli-3.3.0.1492.zip')
- sonararchive.delete()
 
  def zapgz = new File('ZAP_2.9.0_Linux.tar.gz')  
  zapgz.delete()
@@ -50,11 +36,5 @@ zapproxy.untar(  src:"ZAP_2.9.0_Linux.tar.gz",
 def zapfile = new File('./ZAP_2.9.0')
 zapfile.renameTo( new File('./zap') )
 
-def sonarfile = new File('sonar-scanner-3.3.0.1492')
-sonarfile.renameTo( new File('sonar') )
 
-def cmd = "sudo pip install zapcli && sudo chmod -R 777 sonar ."
-def cmdproc = cmd.execute()
-cmdproc.waitFor()              
-println "Perm Process exit code: ${cmdproc.exitValue()}"
 
