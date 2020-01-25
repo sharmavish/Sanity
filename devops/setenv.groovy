@@ -39,11 +39,12 @@ zapproxy.untar(  src:"ZAP_2.9.0_Linux.tar.gz",
             overwrite:"false" )
 
 // Delete the ZAP and sonar scanner zip files 
+
+ def sonararchive = new File('sonar-scanner-cli-3.3.0.1492.zip')
+ sonararchive.delete()
+
  def zapgz = new File('ZAP_2.9.0_Linux.tar.gz')  
  zapgz.delete()
-
- def sonarzip = new File('sonar-scanner-cli-3.3.0.1492.zip')
- sonarzip.delete()
   
 // Rename the ZAP and sonar-scanner
 def zapfile = new File('./ZAP_2.9.0')
@@ -53,7 +54,7 @@ def sonarfile = new File('sonar-scanner-3.3.0.1492')
 sonarfile.renameTo( new File('sonar') )
 
 def perm = "sudo pip install zapcli && sudo chmod -R 777 ./"
-def permproc = sonarscanner.execute()
+def permproc = perm.execute()
 permproc.waitFor()              
 println "Perm Process exit code: ${permproc.exitValue()}"
 
