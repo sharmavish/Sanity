@@ -29,6 +29,7 @@ println "sonar Process exit code: ${zap.exitValue()}"
 def ant = new AntBuilder()   
 ant.untar(  src:"ZAP_2.9.0_Linux.tar.gz",
             dest:"./",
+            compression:"gzip",
             overwrite:"false" )
 
 // - >*
