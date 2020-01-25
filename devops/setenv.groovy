@@ -32,8 +32,8 @@ scanner.unzip(  src:"sonar-scanner-cli-3.3.0.1492.zip",
             overwrite:"false" )
 
 // Unzip the sonar zip
-def zap = new AntBuilder()   
-zap.untar(  src:"ZAP_2.9.0_Linux.tar.gz",
+def zapproxy = new AntBuilder()   
+zapproxy.untar(  src:"ZAP_2.9.0_Linux.tar.gz",
             dest:"./",
             compression:"gzip",
             overwrite:"false" )
