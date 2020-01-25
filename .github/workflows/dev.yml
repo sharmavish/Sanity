@@ -12,28 +12,27 @@ jobs:
       - name: Install Packages 
         run: |
          sudo apt update && sudo apt install groovy
-         sudo groovy devops/setenv.groovy
+         sudo groovy ./devops/setenv.groovy
                   
       - name: test
         run: ls
-        
-      #  env:
-      #    PROJECT_NAME: "dev-demo"
-      #    PROJECT_ID: "bre6fb2q"
-      #    DATEAET_NAME: "devdataset"
-      #  run: |
-      #    sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json  
+       
+      - name: Set Sanity Procject information 
+        env:
+          PROJECT_NAME: "dev-demo"
+          PROJECT_ID: "bre6fb2q"
+          DATEAET_NAME: "devdataset"
+        run: |
+          sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json  
            
-     # - name: Sanity Check 
-     #   run: sudo sanity check
-     #   
-     # - name: Sonar Analyis 
-     #   run: |
-     #      wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip
-     #      sudo unzip sonar-scanner-cli-3.3.0.1492.zip && rm -rf sonar-scanner-cli-3.3.0.1492.zip && sudo chmod -R 777 sonar-scanner-3.3.0.1492 ${GITHUB_WORKSPACE}
-     #      echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
-     #      echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
-     #      sudo ./sonar-scanner-3.3.0.1492/bin/sonar-scanner       
+      - name: Sanity Check 
+        run: sudo sanity check
+        
+      - name: Sonar Analyis 
+        run: |   
+           echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
+           echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
+           sudo ./sonar/bin/sonar-scanner       
            
      # - name: Sanity Build 
      #   run: | 
