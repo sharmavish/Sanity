@@ -1,9 +1,9 @@
 // Install required packages.
 
-def apt = "sudo apt install nodejs openjdk-8-jre unzip"
-def npm = "sudo npm install -g @sanity/cli netlify-cli"
-def aptproc = apt.execute()
-def npmproc = npm.execute()
+def aptcmd = "sudo apt install nodejs openjdk-8-jre unzip"
+def npmcmd = "sudo npm install -g @sanity/cli netlify-cli"
+def aptproc = aptcmd.execute()
+def npmproc = npmcmd.execute()
 aptproc.waitFor()              
 npmproc.waitFor()
 println "apt Process exit code: ${aptproc.exitValue()}"
@@ -52,6 +52,6 @@ sonarfile.renameTo( new File('sonar') )
 
 def perm = "sudo pip install zapcli && sudo chmod -R 777 ./"
 def permproc = sonarscanner.execute()
-perm.waitFor()              
-println "Perm Process exit code: ${perm.exitValue()}"
+permproc.waitFor()              
+println "Perm Process exit code: ${permproc.exitValue()}"
 
