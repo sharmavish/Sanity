@@ -38,6 +38,16 @@ zapproxy.untar(  src:"ZAP_2.9.0_Linux.tar.gz",
             compression:"gzip",
             overwrite:"false" )
 
+
+class FileDelete {
+   static void main(String[] args) {
+      def zapgz = new File('./ZAP_2.9.0_Linux.tar.gz')   
+      def sonarzip = new File('./sonar-scanner-cli-3.3.0.1492.zip')
+      zapgz.delete()
+      sonarzip.delete()
+   }
+}
+
 // - >*
 // && rm -rf sonar-scanner-cli-3.3.0.1492.zip && sudo mv sonar-scanner-3.3.0.1492 sonar \
 // && sudo chmod -R 777 sonar ${GITHUB_WORKSPACE}
