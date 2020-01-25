@@ -14,15 +14,7 @@ println "Std Err command1: ${proc1.err.text}"
 println "Std Out command1: ${proc1.in.text}" 
 
 // Download Sonar scanner.
-@Grab('io.github.http-builder-ng:http-builder-ng-core:1.0.3')
-
-import groovyx.net.http.HttpBuilder
-import groovyx.net.http.optional.Download
-
-def target = 'https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip'
-
-File file = HttpBuilder.configure {
-    request.uri = target
-}.get {
-    Download.toFile(delegate, new File('sonar-scanner-cli-3.3.0.1492.zip'))
-}
+def sonarscanner = "wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip  > /dev/null"
+def sonar = sonarscanner.execute()
+sonar.waitFor()              
+println "sonar Process exit code: ${sonar.exitValue()}"
