@@ -14,7 +14,9 @@ println "Std Err command1: ${proc1.err.text}"
 println "Std Out command1: ${proc1.in.text}" 
 
 // Download Sonar scanner.
-def sonarscanner = "wget  https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip  > /dev/null"
+def sonarscanner = "wget  -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip"
 def sonar = sonarscanner.execute()
 sonar.waitFor()              
 println "sonar Process exit code: ${sonar.exitValue()}"
+println "Std Err command : ${sonar.err.text}"
+println "Std Out command : ${sonar.in.text}" 
