@@ -1,17 +1,17 @@
 // Install required packages.
 
 def apt = "sudo apt install nodejs openjdk-8-jre unzip"
-def npm = "sudo npm install -g @sanity/cli netlify-cli && sudo pip install zapcli"
+def npm = "sudo npm install -g @sanity/cli netlify-cli"
 def aptproc = apt.execute()
 def npmproc = npm.execute()
 aptproc.waitFor()              
 npmproc.waitFor()
-println "Apt Process exit code: ${aptproc.exitValue()}"
-println "Npm Process exit code: ${npmproc.exitValue()}"
-println "Std Err command : ${aptproc.err.text}"
-println "Std Out command : ${aptproc.in.text}" 
-println "Std Err command1: ${npmproc.err.text}"
-println "Std Out command1: ${npmproc.in.text}" 
+println "apt Process exit code: ${aptproc.exitValue()}"
+println "npm Process exit code: ${npmproc.exitValue()}"
+println "Std Err apt : ${aptproc.err.text}"
+println "Std Out apt : ${aptproc.in.text}" 
+println "Std Err npm: ${npmproc.err.text}"
+println "Std Out npm: ${npmproc.in.text}" 
 
 // Download Sonar scanner.
 def sonarscanner = "wget  -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip"
@@ -50,7 +50,7 @@ zapfile.renameTo( new File('./zap') )
 def sonarfile = new File('sonar-scanner-3.3.0.1492')
 sonarfile.renameTo( new File('sonar') )
 
-def perm = "sudo chmod -R 777 ./"
+def perm = "sudo pip install zapcli && sudo chmod -R 777 ./"
 def permproc = sonarscanner.execute()
 perm.waitFor()              
 println "Perm Process exit code: ${perm.exitValue()}"
