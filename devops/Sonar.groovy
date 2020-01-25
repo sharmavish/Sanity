@@ -1,8 +1,8 @@
-// Download ZAP Scanner.
-def zapscanner = "wget  -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz"
-def zap = zapscanner.execute()
-zap.waitFor()              
-println "sonar Process exit code: ${zap.exitValue()}"
+// Download Sonar scanner.
+def sonarscanner = "wget  -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip"
+def sonar = sonarscanner.execute()
+sonar.waitFor()              
+println "sonar Process exit code: ${sonar.exitValue()}"
 
 // Unzip the sonar zip
 def scanner = new AntBuilder()   
