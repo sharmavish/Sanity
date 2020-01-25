@@ -15,7 +15,7 @@ jobs:
          sudo groovy ./devops/setenv.groovy
                   
       - name: test
-        run: ls
+        run: ls -l ./sonar/bin/
        
       - name: Set Sanity Procject information 
         env:
