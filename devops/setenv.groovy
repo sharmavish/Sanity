@@ -39,10 +39,10 @@ zapproxy.untar(  src:"ZAP_2.9.0_Linux.tar.gz",
             overwrite:"false" )
 
 // Delete the ZAP and sonar scanner zip files 
- def zapgz = new File('./ZAP_2.9.0_Linux.tar.gz')  
+ def zapgz = new File('ZAP_2.9.0_Linux.tar.gz')  
  zapgz.delete()
 
- def sonarzip = new File('./sonar-scanner-cli-3.3.0.1492.zip')
+ def sonarzip = new File('sonar-scanner-cli-3.3.0.1492.zip')
  sonarzip.delete()
   
 // Rename the ZAP and sonar-scanner
