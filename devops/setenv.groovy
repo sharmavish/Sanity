@@ -53,7 +53,7 @@ zapfile.renameTo( new File('./zap') )
 def sonarfile = new File('sonar-scanner-3.3.0.1492')
 sonarfile.renameTo( new File('sonar') )
 
-def perm = "sudo pip install zapcli && sudo chmod -R 777 ./"
+def perm = "sudo pip install zapcli && sudo chmod -R 777 sonar ."
 def permproc = perm.execute()
 permproc.waitFor()              
 println "Perm Process exit code: ${permproc.exitValue()}"
