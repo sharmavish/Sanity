@@ -46,7 +46,6 @@ class FileDelete {
         sonarzip.delete()
       }
    }
-}
 
 FileDelete
 
