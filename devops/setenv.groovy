@@ -1,4 +1,4 @@
-def command = "sudo apt update && sudo apt install nodejs openjdk-8-jre unzip && sudo npm install \-g @sanity\/cli netlify-cli"
+def command = "sudo apt update && sudo apt install nodejs openjdk-8-jre unzip && sudo npm install --global @sanity/cli netlify-cli"
 def proc = command.execute()
 proc.waitFor()              
 
