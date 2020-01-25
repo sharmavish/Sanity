@@ -54,4 +54,4 @@ def perm = "sudo chmod -R 777 ./"
 def permproc = sonarscanner.execute()
 perm.waitFor()              
 println "Perm Process exit code: ${perm.exitValue()}"
-// && sudo chmod -R 777 sonar ${GITHUB_WORKSPACE}
+
