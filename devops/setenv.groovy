@@ -22,5 +22,7 @@ println "sonar Process exit code: ${sonar.exitValue()}"
 // Unzip the sonar zip
 def ant = new AntBuilder()   
 ant.unzip(  src:"sonar-scanner-cli-3.3.0.1492.zip",
-            dest:System.getenv("GITHUB_WORKSPACE"),
+            dest:"./",
             overwrite:"false" )
+
+
