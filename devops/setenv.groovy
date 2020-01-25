@@ -48,6 +48,7 @@ class FileDelete {
    }
 }
 
+FileDelete {}
 // - >*
 // && rm -rf sonar-scanner-cli-3.3.0.1492.zip && sudo mv sonar-scanner-3.3.0.1492 sonar \
 // && sudo chmod -R 777 sonar ${GITHUB_WORKSPACE}
