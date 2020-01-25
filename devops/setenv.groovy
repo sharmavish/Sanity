@@ -18,5 +18,9 @@ def sonarscanner = "wget  -q https://binaries.sonarsource.com/Distribution/sonar
 def sonar = sonarscanner.execute()
 sonar.waitFor()              
 println "sonar Process exit code: ${sonar.exitValue()}"
-println "Std Err command : ${sonar.err.text}"
-println "Std Out command : ${sonar.in.text}" 
+
+// Unzip the sonar zip
+def ant = new AntBuilder()   
+ant.unzip(  src:"sonar-scanner-cli-3.3.0.1492.zip",
+            dest:"System.getenv("GITHUB_WORKSPACE")",
+            overwrite:"false" )
