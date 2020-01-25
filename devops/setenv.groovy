@@ -18,4 +18,4 @@ new File(System.getenv("GITHUB_WORKSPACE")).withOutputStream { out ->
     new URL('https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip').eachByte { soanrout ->
         out.write(sonarout)
     }
-
+}
