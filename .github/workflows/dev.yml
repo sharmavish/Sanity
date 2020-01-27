@@ -27,15 +27,13 @@ jobs:
         
       - name: Sonar Analyis 
         run: |   
-           sudo groovy ./devops/Sonar.groovy
            echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
            echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
            sudo ./sonar/bin/sonar-scanner       
            
-     # - name: Sanity Build 
-     #   run: | 
-     #    sudo chmod -R 777 ${GITHUB_WORKSPACE}
-     #    sudo sanity build
+      - name: Sanity Build 
+        run: | 
+          sudo sanity build
           
      # - name: Deploy to Sanity
      #   run: |           
