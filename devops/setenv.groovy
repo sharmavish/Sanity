@@ -14,6 +14,29 @@ println "Std Err npm: ${npmproc.err.text}"
 println "Std Out npm: ${npmproc.in.text}" 
 
 
+
+// Download Sonar scanner.
+def sonarscanner = "wget  -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492.zip"
+def sonar = sonarscanner.execute()
+sonar.waitFor()              
+println "sonar Process exit code: ${sonar.exitValue()}"
+
+// Unzip the sonar zip
+def scanner = new AntBuilder()   
+scanner.unzip(  src:"sonar-scanner-cli-3.3.0.1492.zip",
+            dest:"./",
+            overwrite:"false" )
+
+
+// Delete the ZAP and sonar scanner zip files 
+
+def sonararchive = new File('sonar-scanner-cli-3.3.0.1492.zip')
+sonararchive.delete()
+
+def sonarfile = new File('sonar-scanner-3.3.0.1492')
+sonarfile.renameTo( new File('sonar') )
+
+
 // Download ZAP Scanner.
 def zapscanner = "wget  -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz"
 def zap = zapscanner.execute()
@@ -37,4 +60,6 @@ def zapfile = new File('./ZAP_2.9.0')
 zapfile.renameTo( new File('./zap') )
 
 
+builder = new AntBuilder()
+builder.chmod(dir:"./", perm:'+rwx', includes:"*")
 
