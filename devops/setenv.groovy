@@ -59,7 +59,3 @@ zapproxy.untar(  src:"ZAP_2.9.0_Linux.tar.gz",
 def zapfile = new File('./ZAP_2.9.0')
 zapfile.renameTo( new File('./zap') )
 
-
-builder = new AntBuilder()
-builder.chmod(dir:"./**", perm:'+rwx', type:"both")
-
