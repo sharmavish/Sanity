@@ -16,7 +16,7 @@ jobs:
          
       - name: test
         run: |
-         ls -l /sonar/bin/
+         ls -l ./sonar/bin/
        
      # - name: Set Sanity Procject information 
      #   env:
