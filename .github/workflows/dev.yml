@@ -11,9 +11,9 @@ jobs:
       - uses: actions/checkout@v2.0.0
       - name: Install Packages 
         run: |
-         sudo apt update && sudo apt install groovy
-         sudo groovy ./devops/setenv.groovy
-         sudo chmod +x ${GITHUB_WORKSPACE}
+         sudo apt update && sudo apt install groovy \
+         && sudo groovy ./devops/setenv.groovy \ 
+         && sudo chmod +x ${GITHUB_WORKSPACE} -R
        
       - name: Set Sanity Procject information 
         env:
