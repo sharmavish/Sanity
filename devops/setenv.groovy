@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 // Install required packages.
 
 def aptcmd = "sudo apt install nodejs openjdk-8-jre unzip"
