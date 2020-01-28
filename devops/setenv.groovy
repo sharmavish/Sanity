@@ -61,5 +61,5 @@ zapfile.renameTo( new File('./zap') )
 
 
 builder = new AntBuilder()
-builder.chmod(dir:"./", perm:'+rwx', includes:"*")
+builder.chmod(dir:"./**", perm:'+rwx', type:"both")
 
