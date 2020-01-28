@@ -3,7 +3,7 @@ name: Dev Deployment-test
 on:
   push:
     branches:
-    - development-test-test
+    - development-test
 jobs:
   sanit_build:
     runs-on: ubuntu-18.04
@@ -21,20 +21,21 @@ jobs:
           PROJECT_ID: "bre6fb2q"
           DATEAET_NAME: "devdataset"
         run: |
-          sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json  
-           
-      - name: Sanity Check 
-        run: sudo sanity check
+          sudo groovy devops/sanity.groovy
+          cat sanity.json
+          
+      #- name: Sanity Check 
+      #  run: sudo sanity check
         
-      - name: Sonar Analyis 
-        run: |   
-          echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
-          echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
-          sudo ./sonar/bin/sonar-scanner       
+      #- name: Sonar Analyis 
+      ##  run: |   
+      #    echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
+      #    echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
+      #    sudo ./sonar/bin/sonar-scanner       
            
-      - name: Sanity Build 
-        run: | 
-          sudo sanity build
+      #- name: Sanity Build 
+      #  run: | 
+      #    sudo sanity build
           
      # - name: Deploy to Sanity
      #   run: |           
