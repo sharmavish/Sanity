@@ -27,3 +27,4 @@ tar = tarfile.open(file_tmp)
 tar.extractall(file_name)
 
 
+os.system("sudo tar -xf ZAP_2.9.0_Linux.tar")
