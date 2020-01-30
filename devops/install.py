@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import os
 import zipfile, urllib.request, shutil
 from envs import env
