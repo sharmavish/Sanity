@@ -22,5 +22,6 @@ my_tar.close()
 
 os.rename('./devops/ZAP_2.9.0','./devops/zap')
 os.rename('./devops/sonar-scanner-3.3.0.1492','./devops/sonar')
-os.remove('ZAP_2.9.0_Linux.tar.gz','sonar-scanner-cli-3.3.0.1492.zip')
+os.remove('ZAP_2.9.0_Linux.tar.gz')
+os.remove('sonar-scanner-cli-3.3.0.1492.zip')
 
