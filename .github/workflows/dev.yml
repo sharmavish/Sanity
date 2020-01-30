@@ -41,7 +41,7 @@ jobs:
       - name: Deploy to Sanity
         run: | 
           sudo groovy ./devops/sanity.groovy 
-          ls -l /home/runner/.config/sanity
+          ls -l /home/runner/.config/
  
                  
      #    sudo mkdir -p /home/runner/.config/sanity/ 
