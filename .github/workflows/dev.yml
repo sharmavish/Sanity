@@ -15,8 +15,9 @@ jobs:
       #   sudo groovy ./devops/setenv.groovy 
       #   sudo chmod +x ${GITHUB_WORKSPACE} -R
        
-     # - name: Set Sanity Procject information 
-     #   env:
+      - name: Set Sanity Procject information 
+        run: ls devops/
+       # env:
      #     PROJECT_NAME: "dev-demo"
      #     PROJECT_ID: "bre6fb2q"
      #     DATEAET_NAME: "devdataset"
