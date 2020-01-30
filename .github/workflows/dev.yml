@@ -3,7 +3,7 @@ name: Dev Deployment-test
 on:
   push:
     branches:
-    - development-test-test
+    - development-test
 jobs:
   sanit_build:
     runs-on: ubuntu-18.04
@@ -27,7 +27,9 @@ jobs:
         run: sudo sanity check
         
       - name: Sonar Analyis 
-        run: |   
+        run: |
+          BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
+          echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
           echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
           echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
           sudo ./sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties      
