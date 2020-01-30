@@ -26,11 +26,11 @@ jobs:
       - name: Sanity Check 
         run: sudo sanity check
         
-      #- name: Sonar Analyis 
-      ##  run: |   
-      #    echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> sonar-project.properties
-      #    echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> sonar-project.properties
-      #    sudo ./sonar/bin/sonar-scanner       
+      - name: Sonar Analyis 
+        run: |   
+          echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
+          echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
+          sudo ./sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties      
            
       #- name: Sanity Build 
       #  run: | 
