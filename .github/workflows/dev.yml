@@ -21,7 +21,8 @@ jobs:
           PROJECT_ID: "bre6fb2q"
           DATEAET_NAME: "devdataset"
         run: |
-         env
+         sudo groovy ./devops/sanity.groovy
+         cat sanity.json
       #- name: Sanity Check 
       #  run: sudo sanity check
         
