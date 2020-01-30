@@ -16,7 +16,10 @@ jobs:
       #   sudo chmod +x ${GITHUB_WORKSPACE} -R
        
       - name: Set Sanity Procject information 
-        run: ls devops/
+        run: |
+         ls devops/
+         echo "========"
+         ls
        # env:
      #     PROJECT_NAME: "dev-demo"
      #     PROJECT_ID: "bre6fb2q"
