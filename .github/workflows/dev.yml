@@ -21,6 +21,7 @@ jobs:
           PROJECT_ID: "bre6fb2q"
           DATEAET_NAME: "devdataset"
         run: |
+          python devops/sanity.py
           cat sanity.json
           # sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
           
