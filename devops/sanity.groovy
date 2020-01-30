@@ -1,4 +1,5 @@
 #!/usr/bin/env groovy 
- def subdir = new File('/home/runner/.config/sanity/')
-      subdir.mkdir()
+import java.nio.file.Files;
+import java.nio.file.Paths;
+Files.createDirectories(Paths.get("/home/runner/.config/sanity"));
 
