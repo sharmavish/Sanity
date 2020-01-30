@@ -3,7 +3,7 @@ name: Dev Deployment-test
 on:
   push:
     branches:
-    - development-test
+    - development-test-test
 jobs:
   sanit_build:
     runs-on: ubuntu-18.04
@@ -12,27 +12,27 @@ jobs:
       - name: Install Packages 
         run: |
          sudo apt update && sudo apt install groovy 
-         sudo groovy ./devops/setenv.groovy 
-         sudo chmod +x ${GITHUB_WORKSPACE} -R
+      #   sudo groovy ./devops/setenv.groovy 
+      #   sudo chmod +x ${GITHUB_WORKSPACE} -R
        
-      - name: Set Sanity Procject information 
-        env:
-          PROJECT_NAME: "dev-demo"
-          PROJECT_ID: "bre6fb2q"
-          DATEAET_NAME: "devdataset"
-        run: |
-          sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
+     # - name: Set Sanity Procject information 
+     #   env:
+     #     PROJECT_NAME: "dev-demo"
+     #     PROJECT_ID: "bre6fb2q"
+     #     DATEAET_NAME: "devdataset"
+     #   run: |
+     #     sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
           
-      - name: Sanity Check 
-        run: sudo sanity check
+     # - name: Sanity Check 
+     #   run: sudo sanity check
         
-      - name: Sonar Analyis 
-        run: |
-          BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
-          echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
-          echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
-          echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
-          sudo ./sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties      
+     # - name: Sonar Analyis 
+     #   run: |
+     #     BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
+     #     echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
+     #     echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
+     #     echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
+     #     sudo ./sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties      
            
       #- name: Sanity Build 
       #  run: | 
