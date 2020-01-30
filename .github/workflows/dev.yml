@@ -16,16 +16,13 @@ jobs:
       #   sudo chmod +x ${GITHUB_WORKSPACE} -R
        
       - name: Set Sanity Procject information 
+        env:
+          PROJECT_NAME: "dev-demo"
+          PROJECT_ID: "bre6fb2q"
+          DATEAET_NAME: "devdataset"
         run: |
-         ls devops/
-         echo "========"
-         ls
-       # env:
-     #     PROJECT_NAME: "dev-demo"
-     #     PROJECT_ID: "bre6fb2q"
-     #     DATEAET_NAME: "devdataset"
-     #   run: |
-     #     sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
+          cat sanity.json
+          # sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
           
      # - name: Sanity Check 
      #   run: sudo sanity check
