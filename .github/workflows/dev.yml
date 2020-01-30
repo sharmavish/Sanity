@@ -42,6 +42,7 @@ jobs:
         run: | 
           sudo groovy ./devops/sanity.groovy 
           ls -l /home/runner/.config/
+          cat  /home/runner/.config/config.json
  
                  
      #    sudo mkdir -p /home/runner/.config/sanity/ 
