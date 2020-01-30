@@ -13,3 +13,6 @@ thefile=ZipFile(filename)
 thefile.extractall(destDir)
 thefile.close()
 
+os.system("mv sonar-scanner-3.3.0.1492 sonar")
+
+
