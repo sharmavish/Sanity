@@ -3,7 +3,7 @@ import os
 from zipfile import ZipFile
 from urllib import urlretrieve
 from tempfile import mktemp
-os.system("sudo apt update && sudo apt install nodejs openjdk-8-jre && sudo npm install -g @sanity/cli netlify-cli && sudo pip install requests")
+os.system("sudo apt update && sudo apt install nodejs openjdk-8-jre && sudo npm install -g @sanity/cli netlify-cli")
 
 filename = mktemp('sonar-scanner-cli-3.3.0.1492.zip')
 destDir = mktemp()
