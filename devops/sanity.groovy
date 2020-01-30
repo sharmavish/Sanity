@@ -1,4 +1,5 @@
 #!/usr/bin/env groovy
-def test = System.getenv("PROJECT_NAME")
-def sanity = new AntBuilder()   
-sanity.replace(file: "./sanity.json", token: "project_name", value: "test")
+ def project = System.getenv("PROJECT_NAME")
+ def file = new File('./sanity.json')
+ def newConfig = file.text.replace('projectname', 'project')
+ file.text = newConfig
