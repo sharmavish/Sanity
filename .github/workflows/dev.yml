@@ -38,8 +38,11 @@ jobs:
       #  run: | 
       #    sudo sanity build
           
-     # - name: Deploy to Sanity
-     #   run: |           
+      - name: Deploy to Sanity
+        run: |  
+          ls /home/runner/.config/sanity/
+          cat /home/runner/.config/sanity/config.json  
+                 
      #    sudo mkdir -p /home/runner/.config/sanity/ 
      #    sudo cp -p config.json /home/runner/.config/sanity/
      #    sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
