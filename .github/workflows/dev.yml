@@ -3,7 +3,7 @@ name: Dev Deployment-test
 on:
   push:
     branches:
-    - development-test
+    - development-test-test
 jobs:
   sanit_build:
     runs-on: ubuntu-18.04
@@ -21,10 +21,10 @@ jobs:
           PROJECT_ID: "bre6fb2q"
           DATEAET_NAME: "devdataset"
         run: |
-         sudo groovy ./devops/sanity.groovy
-         cat sanity.json
-      #- name: Sanity Check 
-      #  run: sudo sanity check
+          sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
+          
+      - name: Sanity Check 
+        run: sudo sanity check
         
       #- name: Sonar Analyis 
       ##  run: |   
