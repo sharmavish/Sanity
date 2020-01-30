@@ -3,7 +3,7 @@ name: Dev Deployment-test
 on:
   push:
     branches:
-    - development-test-test
+    - development-test
 jobs:
   sanit_build:
     runs-on: ubuntu-18.04
@@ -39,7 +39,8 @@ jobs:
       #    sudo sanity build
           
       - name: Deploy to Sanity
-        run: |  
+        run: | 
+          sudo groovy ./devops/sanity.groovy 
           ls /home/runner/.config/sanity/
           cat /home/runner/.config/sanity/config.json  
                  
