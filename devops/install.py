@@ -13,6 +13,6 @@ thefile=ZipFile(filename)
 thefile.extractall(destDir)
 thefile.close()
 
-os.rename("./devops/sonar-scanner-3.3.0.1492 ./devops/sonar")
+os.rename('./devops/sonar-scanner-3.3.0.1492','./devops/sonar')
 
 
