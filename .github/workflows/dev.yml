@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2.0.0
-      - name: Install Packages 
-        run: |
-         sudo apt update && sudo apt install groovy 
-         sudo groovy ./devops/setenv.groovy 
-         sudo chmod +x ${GITHUB_WORKSPACE} -R
+      #- name: Install Packages 
+       # run: |
+       #  sudo apt update && sudo apt install groovy 
+       #  sudo groovy ./devops/setenv.groovy 
+       #  sudo chmod +x ${GITHUB_WORKSPACE} -R
        
       - name: Set Sanity Procject information 
         env:
@@ -21,9 +21,7 @@ jobs:
           PROJECT_ID: "bre6fb2q"
           DATEAET_NAME: "devdataset"
         run: |
-          sudo groovy devops/sanity.groovy
-          cat sanity.json
-          
+         env
       #- name: Sanity Check 
       #  run: sudo sanity check
         
