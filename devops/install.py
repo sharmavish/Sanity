@@ -17,14 +17,7 @@ thefile.close()
 
 os.rename('./devops/sonar-scanner-3.3.0.1492','./devops/sonar')
 
-url = 'https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz'
-
-file_tmp = urllib.urlretrieve(url, filename=None)[0]
-base_name = os.path.basename(url)
-
-file_name, file_extension = os.path.splitext(base_name)
-tar = tarfile.open(file_tmp)
-tar.extractall(file_name)
-
-
-os.system("sudo tar -xf ZAP_2.9.0_Linux.tar")
+os.system(wget -q https://github.com/zaproxy/zaproxy/releases/download/v2.9.0/ZAP_2.9.0_Linux.tar.gz)
+my_tar = tarfile.open('ZAP_2.9.0_Linux.tar.gz')
+my_tar.extractall('./devops') # specify which folder to extract to
+my_tar.close()
