@@ -39,7 +39,7 @@ jobs:
           
       - name: Deploy to Sanity
         run: | 
-          ls /home/runner/.config/sanity/
+          sudo ls /home/runner/.config/sanity/
           cat  /home/runner/.config/sanity/config.json
  
                  
