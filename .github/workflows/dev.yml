@@ -18,8 +18,8 @@ jobs:
           PROJECT_NAME: "dev-demo"
           PROJECT_ID: "bre6fb2q"
           DATEAET_NAME: "devdataset"
-          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: |
+          export SANITY_AUTH_TOKEN=${{ secrets.SANITY_AUTH_TOKEN }}
           python devops/sanity.py
                    
     # - name: Sanity Check 
@@ -39,8 +39,7 @@ jobs:
           
       - name: Deploy to Sanity
         run: | 
-          sudo ls -l /home/runner/.config/sanity/
-          sudo cat  /home/runner/.config/sanity/config.json
+         sudo cat  /home/runner/.config/sanity/config.json
  
                  
      #    sudo mkdir -p /home/runner/.config/sanity/ 
