@@ -12,21 +12,17 @@ jobs:
       - name: Install Packages 
         run: |
          python devops/install.py
-      #   sudo groovy ./devops/setenv.groovy 
-      #   sudo chmod +x ${GITHUB_WORKSPACE} -R
        
-      - name: Set Sanity Procject information 
+      - name: Sanity Setup 
         env:
           PROJECT_NAME: "dev-demo"
           PROJECT_ID: "bre6fb2q"
           DATEAET_NAME: "devdataset"
         run: |
           python devops/sanity.py
-          cat sanity.json
-          # sudo sed -i "s|projectname|$PROJECT_NAME|g;s|projectid|$PROJECT_ID|g;s|datasetname|$DATEAET_NAME|g" sanity.json 
-          
-     # - name: Sanity Check 
-     #   run: sudo sanity check
+                   
+     - name: Sanity Check 
+        run: sudo sanity check
         
      # - name: Sonar Analyis 
      #   run: |
@@ -36,15 +32,16 @@ jobs:
      #     echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
      #     sudo ./sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties      
            
-      #- name: Sanity Build 
-      #  run: | 
-      #    sudo sanity build
+      - name: Sanity Build 
+        run: | 
+          sudo sanity build
           
-     # - name: Deploy to Sanity
-     #   run: | 
-     #     sudo groovy ./devops/sanity.groovy 
-     #     ls -l /home/runner/.config/
-     #     cat  /home/runner/.config/config.json
+      - name: Deploy to Sanity
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: | 
+          sudo groovy ./devops/sanity.groovy 
+          cat  /home/runner/.config/config.json
  
                  
      #    sudo mkdir -p /home/runner/.config/sanity/ 
