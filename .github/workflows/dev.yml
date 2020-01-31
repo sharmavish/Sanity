@@ -21,8 +21,8 @@ jobs:
         run: |
           python devops/sanity.py
                    
-     - name: Sanity Check 
-        run: sudo sanity check
+    # - name: Sanity Check 
+    #   run: sudo sanity check
         
      # - name: Sonar Analyis 
      #   run: |
@@ -32,9 +32,9 @@ jobs:
      #     echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
      #     sudo ./sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties      
            
-      - name: Sanity Build 
-        run: | 
-          sudo sanity build
+    #  - name: Sanity Build 
+     #   run: | 
+     #     sudo sanity build
           
       - name: Deploy to Sanity
         env:
