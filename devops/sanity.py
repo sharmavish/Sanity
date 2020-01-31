@@ -3,7 +3,7 @@ import os
 fin = open("sanity.json", "rt")
 data = fin.read()
 data = data.replace('projectname', os.getenv('PROJECT_NAME'))
-data = data.replace('dprojectid', os.getenv('PROJECT_ID'))
+data = data.replace('projectid', os.getenv('PROJECT_ID'))
 data = data.replace('datasetname', os.getenv('DATEAET_NAME'))
 fin.close()
 
