@@ -40,7 +40,6 @@ jobs:
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: | 
-          sudo groovy ./devops/sanity.groovy 
           cat  /home/runner/.config/config.json
  
                  
