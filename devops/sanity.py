@@ -12,7 +12,7 @@ fin.write(data)
 fin.close()
 
 ###### FOR Auth token ####
-os.system('sudo mkdir -p /home/runner/.config/sanity')
+os.system('sudo mkdir -p /home/runner/.config/sanity && sudo chmod 755 /home/runner/.config/sanity')
 os.system('sudo cp -p ./devops/config.json /home/runner/.config/sanity/')
 con = open("/home/runner/.config/sanity/config.json", "rt")
 sanitydata = con.read()
