@@ -34,6 +34,7 @@ jobs:
           echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
           sudo ./devops/sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties  
           echo ""
+          sleep 120
           ID=`cat /home/runner/work/Sanity/Sanity/.scannerwork/report-task.txt |  grep ceTaskId | cut -d "=" -f2`
           curl -s ${{ secrets.SONAR_AUTH_TOKEN }} ${{ secrets.SONAR_HOST_URL }}/api/ce/task?id=$ID
     #  - name: Sanity Build 
