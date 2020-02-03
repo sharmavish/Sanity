@@ -25,13 +25,13 @@ jobs:
       - name: Sanity Check 
         run: yarn install
         
-     # - name: Sonar Analyis 
-     #   run: |
-     #     BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
-     #     echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
-     #     echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
-     #     echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
-     #     sudo ./sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties      
+      - name: Sonar Analyis 
+        run: |
+          BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
+          echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
+          echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
+          echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
+          sudo ./sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties      
            
     #  - name: Sanity Build 
      #   run: | 
