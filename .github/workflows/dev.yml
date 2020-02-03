@@ -34,7 +34,7 @@ jobs:
           echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
           sudo ./devops/sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties  
           echo ""
-          ls -l /home/runner/work/Sanity/Sanity/    
+          ls -l /home/runner/work/Sanity/Sanity/.scannerwork 
            
     #  - name: Sanity Build 
      #   run: | 
