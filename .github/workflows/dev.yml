@@ -32,7 +32,9 @@ jobs:
           echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
           echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
           echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
-          sudo ./devops/sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties      
+          sudo ./devops/sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties  
+          echo ""
+          ls -l /home/runner/work/Sanity/Sanity/    
            
     #  - name: Sanity Build 
      #   run: | 
