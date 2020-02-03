@@ -22,8 +22,8 @@ jobs:
       #    export SANITY_AUTH_TOKEN=${{ secrets.SANITY_AUTH_TOKEN }}
       #    python devops/sanity.py
                    
-      - name: Sanity Check 
-        run: yarn install
+     # - name: Sanity Check 
+     #   run: yarn install
         
       - name: Sonar Analyis 
         run: |
