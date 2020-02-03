@@ -27,6 +27,7 @@ jobs:
         
       - name: Sonar Analyis 
         run: |
+          sudo chmod +x ./devops/sonar/bin/sonar-scanner
           BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
           echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
           echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
