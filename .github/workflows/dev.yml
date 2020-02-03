@@ -13,17 +13,17 @@ jobs:
         run: |
          python devops/install.py
        
-      - name: Sanity Setup 
-        env:
-          PROJECT_NAME: "dev-demo"
-          PROJECT_ID: "bre6fb2q"
-          DATEAET_NAME: "devdataset"
-        run: |
-          export SANITY_AUTH_TOKEN=${{ secrets.SANITY_AUTH_TOKEN }}
-          python devops/sanity.py
+      #- name: Sanity Setup 
+      #  env:
+      #    PROJECT_NAME: "dev-demo"
+      #    PROJECT_ID: "bre6fb2q"
+      #    DATEAET_NAME: "devdataset"
+      #  run: |
+      #    export SANITY_AUTH_TOKEN=${{ secrets.SANITY_AUTH_TOKEN }}
+      #    python devops/sanity.py
                    
-    # - name: Sanity Check 
-    #   run: sudo sanity check
+      - name: Sanity Check 
+        run: yarn install
         
      # - name: Sonar Analyis 
      #   run: |
@@ -37,9 +37,9 @@ jobs:
      #   run: | 
      #     sudo sanity build
           
-      - name: Deploy to Sanity
-        run: | 
-         sudo cat  /home/runner/.config/sanity/config.json
+     # - name: Deploy to Sanity
+     #   run: | 
+     #    sudo cat  /home/runner/.config/sanity/config.json
  
                  
      #    sudo mkdir -p /home/runner/.config/sanity/ 
