@@ -14,8 +14,4 @@ jobs:
        host: ${{ secrets.SONAR_HOST_URL }}
        projectBaseDir: src
        login: ${{ secrets.SONAR_AUTH_TOKEN}}
-    - name: run scanner 
-      run: |
-         sonar-scanner -Dproject.settings=./devops/sonar-project.properties 
-      
-    
+   
