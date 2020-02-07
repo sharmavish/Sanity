@@ -1,59 +1,23 @@
-name: Dev Deployment-test
+name: CI
 
-on:
-  push:
-    branches:
-    - development-test
+on: [push]
+
 jobs:
-  sanit_build:
-    runs-on: ubuntu-18.04
+  build:
+
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2.0.0
-      - name: Install Packages 
-        run: |
-         python devops/install.py
-       
-      #- name: Sanity Setup 
-      #  env:
-      #    PROJECT_NAME: "dev-demo"
-      #    PROJECT_ID: "bre6fb2q"
-      #    DATEAET_NAME: "devdataset"
-      #  run: |
-      #    export SANITY_AUTH_TOKEN=${{ secrets.SANITY_AUTH_TOKEN }}
-      #    python devops/sanity.py
-                   
-     # - name: Sanity Check 
-     #   run: yarn install
-        
-      - name: Sonar Analyis 
-        run: |
-          sudo chmod +x ./devops/sonar/bin/sonar-scanner
-          BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
-          echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
-          echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
-          echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
-          sudo ./devops/sonar/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties  
-          echo ""
-          sleep 120
-          ID=`cat /home/runner/work/Sanity/Sanity/.scannerwork/report-task.txt |  grep ceTaskId | cut -d "=" -f2`
-          curl -s ${{ secrets.SONAR_AUTH_TOKEN }} ${{ secrets.SONAR_HOST_URL }}/api/ce/task?id=$ID
-    #  - name: Sanity Build 
-     #   run: | 
-     #     sudo sanity build
-          
-     # - name: Deploy to Sanity
-     #   run: | 
-     #    sudo cat  /home/runner/.config/sanity/config.json
- 
-                 
-     #    sudo mkdir -p /home/runner/.config/sanity/ 
-     #    sudo cp -p config.json /home/runner/.config/sanity/
-     #    sudo sed -i "s|SANITY_AUTH_TOKEN|`echo ${{ secrets.SANITY_AUTH_TOKEN }}`|g" /home/runner/.config/sanity/config.json
-     #    echo `cat sanity.json  | jq -r .project.name` | sudo sanity deploy
-     
-     # - name: Deploy to Netlify
-     #   env:
-     #     SITE_ID: "b0a2b151-10a4-4e8f-83fc-d6ef9ce1fffb"
-     #   run: |
-     #    export  NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
-     #    sudo netlify deploy -p --auth $NETLIFY_AUTH_TOKEN  -s ${SITE_ID}
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+      
+    - name: sonar-scanner
+      uses: Warchant/setup-sonar-scanner@v1
+    - name: sonar scanner
+      run: |
+        BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
+        echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
+        echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
+        echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
+        sudo sonar-scanner -Dproject.settings=./devops/sonar-project.properties 
