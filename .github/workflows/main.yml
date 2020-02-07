@@ -11,7 +11,15 @@ jobs:
     - uses: actions/checkout@v1
     - name: Run a one-line script
       run: echo Hello, world!
-    - name: Run a multi-line script
+      
+    - name: sonar-scanner
+      uses: Warchant/setup-sonar-scanner@v1
+    - name: sonar scanner
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
+        echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
+        echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
+        echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
+        sudo sonar-scanner -Dproject.settings=./devops/sonar-project.properties 
+        
+      
