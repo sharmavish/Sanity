@@ -9,15 +9,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
+    
+    - name: SonarQube Scan
+      uses: kitabisa/sonarqube-action@v0.0.1
+      with:
+       host: ${{ secrets.SONAR_HOST_URL }}
+       projectBaseDir: src
+       login: ${{ secrets.SONAR_AUTH_TOKEN}}
       
-    - name: sonar-scanner
-      uses: Warchant/setup-sonar-scanner@v1
-    - name: sonar scanner
-      run: |
-        BRANCH=`echo ${GITHUB_REF} | awk -F "/" '{print $NF}'`
-        echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
-        echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
-        echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
-        ./sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties 
+    
