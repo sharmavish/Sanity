@@ -20,4 +20,4 @@ jobs:
         echo "sonar.projectName=Nexxus-Linnox-${BRANCH}" >> devops/sonar-project.properties 
         echo "sonar.login=${{ secrets.SONAR_AUTH_TOKEN}}" >> devops/sonar-project.properties
         echo "sonar.host.url=${{ secrets.SONAR_HOST_URL }}" >> devops/sonar-project.properties
-        sudo sonar-scanner -Dproject.settings=./devops/sonar-project.properties 
+        ./sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner -Dproject.settings=./devops/sonar-project.properties 
